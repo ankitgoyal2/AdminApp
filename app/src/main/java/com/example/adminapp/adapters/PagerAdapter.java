@@ -12,23 +12,30 @@ public class PagerAdapter extends FragmentStateAdapter {
 
     public PagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
+
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
 
+
         switch (position)
         {
             case 0:
                 return new MachinesFragment();
-            default:
+            case 1:
                 return new PersonalDetailsFragment();
+            default:
+                return new MachinesFragment();
         }
     }
 
+
+
     @Override
     public int getItemCount() {
-        return 2;
+
+        return 3;
     }
 }
