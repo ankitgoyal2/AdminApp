@@ -19,17 +19,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        firebaseFunctions = FirebaseFunctions.getInstance();
-        HashMap<String,String> data = new HashMap<>();
-        data.put("uid","eaehkreESngvqdt0kyqTG7vfS3A2");
-        firebaseFunctions.getHttpsCallable("deleteUser")
-                .call(data)
-                .addOnSuccessListener(new OnSuccessListener<HttpsCallableResult>() {
-                    @Override
-                    public void onSuccess(HttpsCallableResult httpsCallableResult) {
-                        Log.i("sudhanshu","User Deleted");
-                    }
-                });
+//        firebaseFunctions = FirebaseFunctions.getInstance();
+//        HashMap<String,String> data = new HashMap<>();
+//        data.put("uid","eaehkreESngvqdt0kyqTG7vfS3A2");
+//        firebaseFunctions.getHttpsCallable("deleteUser")
+//                .call(data)
+//                .addOnSuccessListener(new OnSuccessListener<HttpsCallableResult>() {
+//                    @Override
+//                    public void onSuccess(HttpsCallableResult httpsCallableResult) {
+//                        Log.i("sudhanshu","User Deleted");
+//                    }
+//                });
+
+
+
 
 
     }
