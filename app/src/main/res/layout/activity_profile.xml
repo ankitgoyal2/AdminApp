@@ -11,6 +11,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+
         android:background="@drawable/profile_top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +39,7 @@
             android:id="@+id/user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:transitionName="transition"
             android:text="Sudhanshu Gupta"
             android:paddingStart="15dp"
             android:layout_marginTop="15dp"

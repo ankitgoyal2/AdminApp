@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.transition.AutoTransition;
+import android.transition.ChangeBounds;
+import android.transition.Fade;
+import android.view.View;
 
 import com.example.adminapp.adapters.PagerAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -17,6 +21,13 @@ public class ProfileActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        Fade fade = new Fade();
+        View decor = getWindow().getDecorView();
+        fade.excludeTarget(android.R.id.statusBarBackground,true);
+        fade.excludeTarget(android.R.id.navigationBarBackground,true);
+        getWindow().setEnterTransition(fade);
+        getWindow().setExitTransition(fade);
 
         ViewPager2 viewPager2 = findViewById(R.id.view_pager);
         viewPager2.setAdapter(new PagerAdapter(this));
