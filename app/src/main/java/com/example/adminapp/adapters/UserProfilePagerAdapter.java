@@ -7,10 +7,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.adminapp.fragments.MachinesFragment;
 import com.example.adminapp.fragments.PersonalDetailsFragment;
+import com.example.adminapp.fragments.UserListFragment;
 
-public class PagerAdapter extends FragmentStateAdapter {
+public class UserProfilePagerAdapter extends FragmentStateAdapter {
 
-    public PagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public UserProfilePagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
 
     }
@@ -27,7 +28,7 @@ public class PagerAdapter extends FragmentStateAdapter {
             case 1:
                 return new PersonalDetailsFragment();
             default:
-                return new MachinesFragment();
+                return new UserListFragment();
         }
     }
 

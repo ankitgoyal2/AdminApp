@@ -33,6 +33,7 @@ public class MachinesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        this.setSharedElementEnterTransition(requireContext());
         return inflater.inflate(R.layout.fragment_machines, container, false);
     }
 }
