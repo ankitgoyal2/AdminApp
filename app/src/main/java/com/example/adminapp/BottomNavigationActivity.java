@@ -19,8 +19,8 @@ public class BottomNavigationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setOurFragment(new HomeFragment(),1,1);
         setContentView(R.layout.activity_bottom_navigation);
-        MeowBottomNavigation bottomNavigation = findViewById(R.id.bottom_bar);
 
+        MeowBottomNavigation bottomNavigation = findViewById(R.id.bottom_bar);
         bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_account));
 

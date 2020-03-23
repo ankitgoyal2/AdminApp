@@ -65,6 +65,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/generate_qr"
                 android:layout_width="95dp"
                 android:layout_height="95dp"
                 android:layout_gravity="center_horizontal"
@@ -91,6 +92,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/manage_users"
                 android:layout_width="95dp"
                 android:layout_height="95dp"
                 android:layout_gravity="center_horizontal"
@@ -128,6 +130,7 @@
             >
 
             <ImageView
+                android:id="@+id/broadcast"
                 android:layout_width="95dp"
                 android:layout_height="95dp"
                 android:layout_row="0"
