@@ -41,4 +41,7 @@ dependencies {
 
     //Animated bottom nav
     implementation 'com.etebarian:meow-bottom-navigation-java:1.2.0'
+
+    // Blur Images
+    implementation 'jp.wasabeef:blurry:3.0.0'
 }

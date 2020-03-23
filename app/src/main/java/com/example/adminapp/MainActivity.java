@@ -6,6 +6,9 @@ import androidx.core.view.ViewCompat;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.transition.Fade;
 import android.util.Log;
@@ -21,6 +24,9 @@ import com.google.firebase.functions.HttpsCallableResult;
 import org.w3c.dom.Text;
 
 import java.util.HashMap;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import jp.wasabeef.blurry.Blurry;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
         fade.excludeTarget(android.R.id.navigationBarBackground,true);
         getWindow().setEnterTransition(fade);
         getWindow().setExitTransition(fade);
+
+        ImageView backgroundImage = findViewById(R.id.background_image);
+        CircleImageView userProfilePic = findViewById(R.id.user_profile_pic);
+
+        Bitmap bitmap = ((BitmapDrawable)userProfilePic.getDrawable()).getBitmap();
+        Blurry.with(this)
+                .radius(1)
+                .from(bitmap)
+                .into(backgroundImage);
 
 //        final TextView userName = findViewById(R.id.user_name);
 //        final ImageView profile = findViewById(R.id.profile);
