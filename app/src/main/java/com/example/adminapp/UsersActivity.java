@@ -26,17 +26,6 @@ public class UsersActivity extends AppCompatActivity {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
 
-                switch (position)
-                {
-                    case 0:
-                        break;
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-
-                }
-
             }
         });
         tabLayoutMediator.attach();

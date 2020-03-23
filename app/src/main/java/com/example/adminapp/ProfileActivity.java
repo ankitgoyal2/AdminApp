@@ -4,13 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.transition.Fade;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.adminapp.adapters.UserProfilePagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -20,8 +26,15 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+
+        CircleImageView userProfilePic = findViewById(R.id.user_profile_pic);
+        byte[] byteArray = getIntent().getByteArrayExtra("userProfilePic");
+        if (byteArray != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            userProfilePic.setImageBitmap(bitmap);
+        }
+
         Fade fade = new Fade();
-        View decor = getWindow().getDecorView();
         fade.excludeTarget(android.R.id.statusBarBackground,true);
         fade.excludeTarget(android.R.id.navigationBarBackground,true);
         getWindow().setEnterTransition(fade);
