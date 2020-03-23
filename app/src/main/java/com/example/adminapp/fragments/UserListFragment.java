@@ -19,14 +19,14 @@ import com.example.adminapp.adapters.UserListAdapter;
  */
 public class UserListFragment extends Fragment {
 
-    String text;
+    String type;
     public UserListFragment() {
         // Required empty public constructor
     }
 
-    public UserListFragment(String text)
+    public UserListFragment(String type)
     {
-        this.text = text;
+        this.type = type;
     }
 
 
@@ -36,7 +36,7 @@ public class UserListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_user_list, container, false);
         TextView userType= view.findViewById(R.id.user_type);
-        userType.setText(text);
+        userType.setText(type);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
