@@ -43,25 +43,25 @@ public class MainActivity extends AppCompatActivity {
 //                });
 
         Fade fade = new Fade();
-        View decor = getWindow().getDecorView();
+
         fade.excludeTarget(android.R.id.statusBarBackground,true);
         fade.excludeTarget(android.R.id.navigationBarBackground,true);
         getWindow().setEnterTransition(fade);
         getWindow().setExitTransition(fade);
 
-        final TextView userName = findViewById(R.id.user_name);
-        final ImageView profile = findViewById(R.id.profile);
-
-        userName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
-                Pair<View,String> p1 = Pair.create((View)userName,ViewCompat.getTransitionName(userName));
-                Pair<View,String> p2 = Pair.create((View)profile,ViewCompat.getTransitionName(profile));
-                ActivityOptions optionsCompat = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this,p1,p2);
-                startActivity(intent,optionsCompat.toBundle());
-            }
-        });
+//        final TextView userName = findViewById(R.id.user_name);
+//        final ImageView profile = findViewById(R.id.profile);
+//
+//        userName.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
+//                Pair<View,String> p1 = Pair.create((View)userName,ViewCompat.getTransitionName(userName));
+//                Pair<View,String> p2 = Pair.create((View)profile,ViewCompat.getTransitionName(profile));
+//                ActivityOptions optionsCompat = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this,p1,p2);
+//                startActivity(intent,optionsCompat.toBundle());
+//            }
+//        });
 
 
 

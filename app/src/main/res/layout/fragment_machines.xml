@@ -6,13 +6,5 @@
     tools:context=".fragments.MachinesFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="361dp"
-        android:id="@+id/end_view"
-        android:transitionName="shared_element_container"
-        android:src="@mipmap/profile">
-
-    </ImageView>
 
 </FrameLayout>

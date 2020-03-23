@@ -40,7 +40,7 @@ public class UserListFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        UserListAdapter adapter = new UserListAdapter();
+        UserListAdapter adapter = new UserListAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         return view;
     }
