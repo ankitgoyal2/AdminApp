@@ -21,11 +21,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="150dp"
+            android:layout_height="130dp"
             android:layout_marginStart="50dp"
             android:background="@drawable/user_list_card_background"
             app:layout_constraintBottom_toBottomOf="parent"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/profile_pic"
@@ -36,8 +35,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_pic"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginStart="10dp"
             android:src="@mipmap/profile_avatar"
             app:layout_constraintBottom_toBottomOf="parent"
