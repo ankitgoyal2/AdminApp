@@ -64,7 +64,7 @@ public class UserListFragment extends Fragment {
                     .setQuery(baseQuery,config,Manager.class)
                     .build();
 
-            ManagerListAdapter adapter = new ManagerListAdapter(options,getActivity().getApplicationContext());
+            ManagerListAdapter adapter = new ManagerListAdapter(options,getActivity());
             recyclerView.setAdapter(adapter);
             adapter.startListening();
 

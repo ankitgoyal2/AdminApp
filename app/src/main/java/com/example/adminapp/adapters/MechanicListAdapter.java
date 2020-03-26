@@ -54,7 +54,7 @@ public class MechanicListAdapter extends FirebaseRecyclerPagingAdapter<Mechanic,
     @Override
     public MechanicListAdapter.MechanicHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_design,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_profile_card,null);
         return new MechanicListAdapter.MechanicHolder(view);
     }
 
