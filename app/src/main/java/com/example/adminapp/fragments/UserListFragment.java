@@ -3,6 +3,7 @@ package com.example.adminapp.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,7 +13,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.adminapp.R;
-import com.example.adminapp.adapters.UserListAdapter;
+import com.example.adminapp.adapters.ManagerListAdapter;
+import com.example.adminapp.adapters.MechanicListAdapter;
+
+import com.example.adminapp.models.Manager;
+import com.example.adminapp.models.Mechanic;
+import com.firebase.ui.database.paging.DatabasePagingOptions;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,7 +48,7 @@ public class UserListFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
         if(type.equals("Manager"))
         {

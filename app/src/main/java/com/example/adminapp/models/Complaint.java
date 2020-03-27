@@ -1,5 +1,8 @@
 package com.example.adminapp.models;
 
+
+
+
 import org.parceler.Parcel;
 
 import java.util.HashMap;

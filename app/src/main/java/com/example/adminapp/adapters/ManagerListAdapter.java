@@ -48,7 +48,7 @@ public class ManagerListAdapter extends FirebaseRecyclerPagingAdapter<Manager, M
     @Override
     public ManagerListAdapter.ManagerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_design,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_profile_card,null);
         return new ManagerListAdapter.ManagerHolder(view);
     }
 
