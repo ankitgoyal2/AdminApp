@@ -26,6 +26,8 @@ import com.google.firebase.database.Query;
  */
 public class UserListFragment extends Fragment {
 
+    FirebaseDatabase firebaseDatabase;
+
     String type;
     public UserListFragment() {
         // Required empty public constructor
