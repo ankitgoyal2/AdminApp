@@ -28,7 +28,7 @@ public class UserProfilePagerAdapter extends FragmentStateAdapter {
             case 1:
                 return new PersonalDetailsFragment();
             default:
-                return new UserListFragment();
+                return new MachinesFragment();
         }
     }
 
