@@ -96,7 +96,7 @@ public class ManagerListAdapter extends FirebaseRecyclerPagingAdapter<Manager, M
 
                     Intent intent = new Intent(activity.getApplicationContext(), ProfileActivity.class);
                     Pair<View,String> p1 = Pair.create((View)userProfilePic, ViewCompat.getTransitionName(userProfilePic));
-                    intent.putExtra("userProfilePic",byteArray);
+                    //intent.putExtra("userProfilePic",byteArray);
                     //Pair<View,String> p2 = Pair.create((View)profile,ViewCompat.getTransitionName(profile));
                     ActivityOptions optionsCompat = ActivityOptions.makeSceneTransitionAnimation(activity,p1);
                     activity.startActivity(intent,optionsCompat.toBundle());
