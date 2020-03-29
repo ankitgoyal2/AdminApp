@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.example.adminapp.R;
 import com.example.adminapp.adapters.ManagerListAdapter;
 import com.example.adminapp.adapters.MechanicListAdapter;
-
 import com.example.adminapp.models.Manager;
 import com.example.adminapp.models.Mechanic;
 import com.firebase.ui.database.paging.DatabasePagingOptions;
@@ -26,6 +25,8 @@ import com.google.firebase.database.Query;
  * A simple {@link Fragment} subclass.
  */
 public class UserListFragment extends Fragment {
+
+    FirebaseDatabase firebaseDatabase;
 
     String type;
     public UserListFragment() {
@@ -65,7 +66,7 @@ public class UserListFragment extends Fragment {
                     .setQuery(baseQuery,config,Manager.class)
                     .build();
 
-            ManagerListAdapter adapter = new ManagerListAdapter(options,getActivity().getApplicationContext());
+            ManagerListAdapter adapter = new ManagerListAdapter(options,getActivity());
             recyclerView.setAdapter(adapter);
             adapter.startListening();
 
