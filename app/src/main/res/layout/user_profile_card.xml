@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_layout"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="400dp"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@android:color/transparent"
     android:gravity="center"
@@ -36,6 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,16 +45,59 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="50dp"
-                android:paddingEnd="10dp"
-                android:text="Sudhanshu GUpta"
+                android:paddingStart="45dp"
+                android:text="Sudhanshu Gupta"
                 android:textColor="#646464"
-                android:textSize="25dp"
-
+                android:textSize="22dp"
+                android:paddingTop="5dp"
+                android:fontFamily="@font/allerta"
                 app:layout_constraintVertical_bias="0.06">
-
             </TextView>
+                <TextView
+                    android:id="@+id/tv_department"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="45dp"
+                    android:text="Security Department"
+                    android:textColor="#646464"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/allerta"
+                    >
+                </TextView>
+                <View
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#646464"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="50dp"
+                    android:layout_height="1dp"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:paddingStart="45dp">
 
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/ic_location_on_black_24dp"
+                        ></ImageView>
+
+                    <TextView
+                        android:id="@+id/tv_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="Terminal 3,Indira Gandhi Airport"
+                        android:textColor="#646464"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/allerta"
+                        >
+                    </TextView>
+                </LinearLayout>
             </LinearLayout>
 
 
