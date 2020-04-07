@@ -71,4 +71,8 @@ dependencies {
 
     // Blur Images
     implementation 'jp.wasabeef:blurry:3.0.0'
+
+    //Lottie
+    implementation 'com.airbnb.android:lottie:3.3.1'
+    implementation 'com.android.support:cardview-v7:28.0.0'
 }

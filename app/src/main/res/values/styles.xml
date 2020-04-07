@@ -8,5 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowContentTransitions">true</item>
     </style>
+    <style name="parent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="modifiedEditText" parent="parent">
+        <item name="android:textSize">15dp</item>
+
+    </style>
 
 </resources>

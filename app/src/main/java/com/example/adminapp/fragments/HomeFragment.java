@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.adminapp.BroadcastActivity;
 import com.example.adminapp.R;
 import com.example.adminapp.UsersActivity;
 import com.example.adminapp.adapters.ViewPagerAdapter;
@@ -71,7 +72,8 @@ public class HomeFragment extends Fragment {
         broadcast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(activity.getApplicationContext(), BroadcastActivity.class);
+                startActivity(i);
             }
         });
 

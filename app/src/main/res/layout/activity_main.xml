@@ -42,7 +42,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/manager"
         android:layout_width="300dp"
         android:layout_height="400dp"
         android:paddingLeft="50dp"
