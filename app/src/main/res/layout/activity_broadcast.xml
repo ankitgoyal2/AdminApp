@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2A2D36"
+    android:background="#0F1E2D"
     tools:context=".BroadcastActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -80,7 +80,7 @@
             android:id="@+id/constraintLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
+            android:layout_marginHorizontal="10dp"
             android:background="@drawable/broadcast_box_2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +112,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"
-
                 android:checkable="true"
                 android:clickable="true"
                 android:focusable="true"
@@ -190,17 +189,6 @@
 
 
             </com.google.android.material.card.MaterialCardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/broadcast_box_3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
-            app:layout_constraintVertical_bias="0.1">
 
             <TextView
                 android:id="@+id/textView7"
@@ -215,7 +203,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mechanic"
                 app:layout_constraintVertical_bias="0">
 
             </TextView>
@@ -270,8 +258,8 @@
                     android:inputType="textMultiLine"
                     android:textColor="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <ImageView
             android:id="@+id/imageView"
@@ -296,12 +284,13 @@
             android:layout_marginHorizontal="100dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="25dp"
-            android:backgroundTint="#FF4F5A"
+            android:backgroundTint="#0289CD"
             android:text="Send"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout7"></Button>
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"></Button>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
