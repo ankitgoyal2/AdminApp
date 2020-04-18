@@ -21,7 +21,7 @@ public class BroadcastActivity extends AppCompatActivity {
         setContentView(R.layout.activity_broadcast);
 
 //        final TextView broadcastMessage = findViewById(R.id.broadcast_message);
-//        final Animation a = AnimationUtils.loadAnimation(this, R.anim.broadcast_slide_fade);
+//        final Animation a = AnimationUtils.loadAnimation(this, R.anim.paint_animation);
 //        broadcastMessage.setVisibility(View.VISIBLE);
 
         back = findViewById(R.id.back);
