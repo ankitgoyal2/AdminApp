@@ -4,4 +4,12 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="transparent">@android:color/transparent</color>
+
+    <color name="background">#0F1E2D</color>
+    <color name="surface">#233241</color>
+    <color name="lightBlue">#0289CD</color>
+    <color name="red">#f03d5f</color>
+    <color name="darkSurface">#933AFE</color>
+    <color name="mediumSurface">#7276F7</color>
+    <color name="lightSurface">#52B5F0</color>
 </resources>

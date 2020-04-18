@@ -1,5 +1,6 @@
 package com.example.adminapp.fragments;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -27,17 +28,15 @@ import com.google.firebase.database.Query;
 public class UserListFragment extends Fragment {
 
     FirebaseDatabase firebaseDatabase;
-
     String type;
+
     public UserListFragment() {
         // Required empty public constructor
     }
-
     public UserListFragment(String type)
     {
         this.type = type;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,7 +46,12 @@ public class UserListFragment extends Fragment {
         TextView userType= view.findViewById(R.id.user_type);
         userType.setText(type);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new OverlapDecoration());
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -92,5 +96,17 @@ public class UserListFragment extends Fragment {
         }
 
         return view;
+    }
+
+    public class OverlapDecoration extends RecyclerView.ItemDecoration {
+
+        private final static int vertOverlap = -200;
+
+        @Override
+        public void getItemOffsets (Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+
+            outRect.set(0, vertOverlap, 0,0) ;
+
+        }
     }
 }
