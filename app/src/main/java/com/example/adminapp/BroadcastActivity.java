@@ -87,6 +87,10 @@ public class BroadcastActivity extends AppCompatActivity {
                 HashMap<String,String> data = new HashMap<>();
                 data.put("subject",subjectText);
                 data.put("message",messageText);
+                if(receiver==null){
+                    Toast.makeText(BroadcastActivity.this, "Please select Receiver", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 data.put("receiver",receiver);
 
                 firebaseFunctions.getHttpsCallable("broadcastMessage")
