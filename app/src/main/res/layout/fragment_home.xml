@@ -3,28 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="658dp"
+    android:background="#C8F1F3DA"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10"
+
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4.5"
-        android:layout_marginTop="10dp"
+        android:layout_height="250dp"
+
+         android:layout_marginTop="10dp"
         >
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +42,7 @@
             android:layout_width="match_parent"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@id/viewpager"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="25dp"
             android:gravity="center_vertical|center_horizontal"
             android:layout_height="wrap_content">
 
@@ -47,13 +51,13 @@
     <GridLayout
         android:id="@+id/grid_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_height="120dp"
+        android:layout_weight="2.5"
         android:alignmentMode="alignMargins"
-        android:columnCount="2"
+        android:columnCount="3"
         android:columnOrderPreserved="true"
-        android:padding="10dp"
-        android:layout_marginLeft="30dp"
+
+        android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:rowCount="1">
 
@@ -66,8 +70,8 @@
 
             <ImageView
                 android:id="@+id/generate_qr"
-                android:layout_width="95dp"
-                android:layout_height="95dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/ic_qr_code"></ImageView>
 
@@ -78,9 +82,9 @@
                 android:layout_height="wrap_content"
                 android:text="GENERATE QR"
                 android:textAlignment="center"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
-
+                android:fontFamily="@font/imprima"
                 android:layout_marginTop="8dp"
                 ></TextView>
         </LinearLayout>
@@ -93,8 +97,8 @@
 
             <ImageView
                 android:id="@+id/manage_users"
-                android:layout_width="95dp"
-                android:layout_height="95dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/ic_manage_user"></ImageView>
 
@@ -105,36 +109,25 @@
                 android:layout_height="wrap_content"
                 android:text="MANAGE USER"
                 android:textAlignment="center"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
-
+               android:fontFamily="@font/imprima"
                 android:layout_marginTop="8dp"
                 ></TextView>
         </LinearLayout>
-
-
-
-    </GridLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:layout_margin="10dp"
             android:orientation="vertical"
             android:layout_gravity="center_horizontal|center_vertical"
             >
 
             <ImageView
                 android:id="@+id/broadcast"
-                android:layout_width="95dp"
-                android:layout_height="95dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_row="0"
-
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/ic_message"></ImageView>
             <TextView
@@ -142,14 +135,59 @@
                 android:layout_height="wrap_content"
                 android:text="BROADCAST"
                 android:textAlignment="center"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/imprima"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
                 ></TextView>
         </LinearLayout>
+
+    </GridLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Managers:"
+            android:textStyle="bold"
+            android:fontFamily="@font/imprima"
+            android:textColor="@color/darktext"
+            android:textSize="20sp"
+            android:layout_marginLeft="20dp"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/manager_list_rv"
+            />
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mechanic List:"
+            android:textStyle="bold"
+            android:fontFamily="@font/imprima"
+            android:textColor="@color/darktext"
+            android:textSize="20sp"
+            android:layout_marginLeft="20dp"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mechanic_list_rv"
+            />
+    </LinearLayout>
 </LinearLayout>
-
+</ScrollView>
 </FrameLayout>

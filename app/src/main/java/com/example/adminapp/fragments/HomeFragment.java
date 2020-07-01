@@ -7,6 +7,9 @@ import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.paging.PagedList;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
@@ -19,15 +22,21 @@ import android.widget.LinearLayout;
 import com.example.adminapp.BroadcastActivity;
 import com.example.adminapp.R;
 import com.example.adminapp.UsersActivity;
+import com.example.adminapp.adapters.ManagerHomepageListAdapter;
+import com.example.adminapp.adapters.MechanicHomepageListAdapter;
+import com.example.adminapp.adapters.MechanicListAdapter;
 import com.example.adminapp.adapters.ViewPagerAdapter;
+import com.example.adminapp.models.Manager;
+import com.example.adminapp.models.Mechanic;
+import com.firebase.ui.database.paging.DatabasePagingOptions;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class HomeFragment extends Fragment {
 
 
@@ -36,6 +45,9 @@ public class HomeFragment extends Fragment {
     private ImageView[] dots;
     Timer timer;
     Activity activity;
+    FirebaseDatabase firebaseDatabase;
+    LinearLayoutManager HorizontalLayout,Horizontallayout1;
+
     public HomeFragment() {
         activity = getActivity();
         // Required empty public constructor
@@ -135,6 +147,57 @@ public class HomeFragment extends Fragment {
 
         //timer in viewpager
         autoScroll();
+
+        RecyclerView recyclerView_mechanic,recyclerView_manager;
+
+        recyclerView_mechanic=view.findViewById(R.id.mechanic_list_rv);
+        recyclerView_mechanic.setLayoutManager(new LinearLayoutManager(getActivity()));
+        HorizontalLayout
+                = new LinearLayoutManager(
+                getActivity(),
+                LinearLayoutManager.HORIZONTAL,
+                false);
+        recyclerView_mechanic.setLayoutManager(HorizontalLayout);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        Query baseQuery = firebaseDatabase.getReference("Users").child("Mechanic");
+        PagedList.Config config = new PagedList.Config.Builder()
+                .setEnablePlaceholders(false)
+                .setPrefetchDistance(10)
+                .setPageSize(20)
+                .build();
+
+        DatabasePagingOptions<Mechanic> options = new DatabasePagingOptions.Builder<Mechanic>()
+                .setLifecycleOwner(this)
+                .setQuery(baseQuery,config,Mechanic.class)
+                .build();
+
+        MechanicHomepageListAdapter mechanicHomepageListAdapter= new MechanicHomepageListAdapter(options,getActivity().getApplicationContext());
+        recyclerView_mechanic.setAdapter(mechanicHomepageListAdapter);
+        mechanicHomepageListAdapter.startListening();
+
+//        recyclerView_manager = view.findViewById(R.id.manager_list_rv);
+//        recyclerView_manager.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        Horizontallayout1
+//                = new LinearLayoutManager(
+//                getActivity(),
+//                LinearLayoutManager.HORIZONTAL,
+//                false);
+//        recyclerView_manager.setLayoutManager(Horizontallayout1);
+//        Query baseQuery1 = firebaseDatabase.getReference("Users").child("Manager");
+//        PagedList.Config config1 = new PagedList.Config.Builder()
+//                .setEnablePlaceholders(false)
+//                .setPrefetchDistance(10)
+//                .setPageSize(20)
+//                .build();
+//
+//        DatabasePagingOptions<Manager> options1 = new DatabasePagingOptions.Builder<Manager>()
+//                .setLifecycleOwner(this)
+//                .setQuery(baseQuery1,config1,Manager.class)
+//                .build();
+//        ManagerHomepageListAdapter managerHomepageListAdapter = new ManagerHomepageListAdapter(options1,getActivity().getApplicationContext());
+//        recyclerView_manager.setAdapter(managerHomepageListAdapter);
+//        managerHomepageListAdapter.startListening();
 
         return view;
     }

@@ -8,28 +8,36 @@
     android:layout_height="match_parent"
     tools:context=".BottomNavigationActivity"
     >
-
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:title="Home"
+        android:layout_alignParentTop="true"
+        app:titleTextColor="#fff"
+        android:background="@color/darktext"
+        />
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#000"
-        app:mbn_backgroundBottomColor="#2A2D36"
-        app:mbn_circleColor="#2A2D36"
+        android:background="#C8F1F3DA"
+        app:mbn_backgroundBottomColor="#ffffff"
+        app:mbn_circleColor="#ffffff"
         app:mbn_countBackgroundColor="#ff6f00"
         app:mbn_countTextColor="#ffffff"
         app:mbn_defaultIconColor="#90a4ae"
         app:mbn_rippleColor="#2f424242"
-        app:mbn_selectedIconColor="#f03d5f"
+        app:mbn_selectedIconColor="#3c415e"
         app:mbn_shadowColor="#1f212121"
         tools:ignore="UnknownId" />
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="658dp"
+        android:layout_height="800dp"
         android:layout_above="@+id/bottom_bar"
+        android:layout_marginTop="45dp"
         >
 
         <FrameLayout

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0f1e2d"
+
     tools:context=".fragments.ProfileFragment">
         <LinearLayout
             android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                 android:layout_height="140dp"
                 android:layout_marginTop="10dp"
                 app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="#233241"
+                app:cardBackgroundColor="#673AB7"
                 android:layout_margin="10dp"
                 app:cardElevation="5dp"
                 >
@@ -236,7 +236,7 @@
                 android:layout_marginTop="20dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="5dp"
-                app:cardBackgroundColor="#233241"
+                app:cardBackgroundColor="#FF5722"
                 android:layout_margin="10dp"
                 >
                 <LinearLayout

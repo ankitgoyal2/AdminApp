@@ -12,4 +12,7 @@
     <color name="darkSurface">#933AFE</color>
     <color name="mediumSurface">#7276F7</color>
     <color name="lightSurface">#52B5F0</color>
+    <color name="darktext">#275F73</color>
+
+
 </resources>
