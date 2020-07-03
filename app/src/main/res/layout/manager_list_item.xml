@@ -9,10 +9,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
        <LinearLayout
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:orientation="vertical"
+           android:id="@+id/card_ll"
+           android:paddingLeft="15dp"
+           android:paddingRight="5dp"
+           android:paddingTop="15dp"
+           android:paddingBottom="15dp"
            >
            <de.hdodenhof.circleimageview.CircleImageView
                android:layout_width="70dp"
@@ -28,6 +37,7 @@
                android:text="Manager name"
                android:textAlignment="center"
                android:textStyle="bold"
+               android:layout_marginTop="3dp"
                android:fontFamily="@font/imprima"
                android:ems="5"
                android:textSize="17sp"
@@ -35,4 +45,14 @@
 
        </LinearLayout>
 
+        <TextView
+            android:id="@+id/textViewOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/card_ll"
+            android:paddingRight="10dp"
+            android:text="&#8942;"
+            android:textAppearance="?android:textAppearanceLarge" />
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

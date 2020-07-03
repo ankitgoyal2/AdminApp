@@ -17,7 +17,7 @@ import com.example.adminapp.R;
 public class ViewPagerAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
-    private int [] images = {R.drawable.generateqrimg,R.drawable.manageuserimg,R.drawable.broadcastmesg};
+    private int [] images = {R.drawable.addemployee,R.drawable.broadcastmesg};
 
     public ViewPagerAdapter(Context context) {
         this.context = context;

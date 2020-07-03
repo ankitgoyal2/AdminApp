@@ -176,28 +176,28 @@ public class HomeFragment extends Fragment {
         recyclerView_mechanic.setAdapter(mechanicHomepageListAdapter);
         mechanicHomepageListAdapter.startListening();
 
-//        recyclerView_manager = view.findViewById(R.id.manager_list_rv);
-//        recyclerView_manager.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        Horizontallayout1
-//                = new LinearLayoutManager(
-//                getActivity(),
-//                LinearLayoutManager.HORIZONTAL,
-//                false);
-//        recyclerView_manager.setLayoutManager(Horizontallayout1);
-//        Query baseQuery1 = firebaseDatabase.getReference("Users").child("Manager");
-//        PagedList.Config config1 = new PagedList.Config.Builder()
-//                .setEnablePlaceholders(false)
-//                .setPrefetchDistance(10)
-//                .setPageSize(20)
-//                .build();
-//
-//        DatabasePagingOptions<Manager> options1 = new DatabasePagingOptions.Builder<Manager>()
-//                .setLifecycleOwner(this)
-//                .setQuery(baseQuery1,config1,Manager.class)
-//                .build();
-//        ManagerHomepageListAdapter managerHomepageListAdapter = new ManagerHomepageListAdapter(options1,getActivity().getApplicationContext());
-//        recyclerView_manager.setAdapter(managerHomepageListAdapter);
-//        managerHomepageListAdapter.startListening();
+        recyclerView_manager = view.findViewById(R.id.manager_list_rv);
+        recyclerView_manager.setLayoutManager(new LinearLayoutManager(getActivity()));
+        Horizontallayout1
+                = new LinearLayoutManager(
+                getActivity(),
+                LinearLayoutManager.HORIZONTAL,
+                false);
+        recyclerView_manager.setLayoutManager(Horizontallayout1);
+        Query baseQuery1 = firebaseDatabase.getReference("Users").child("Manager");
+        PagedList.Config config1 = new PagedList.Config.Builder()
+                .setEnablePlaceholders(false)
+                .setPrefetchDistance(10)
+                .setPageSize(20)
+                .build();
+
+        DatabasePagingOptions<Manager> options1 = new DatabasePagingOptions.Builder<Manager>()
+                .setLifecycleOwner(this)
+                .setQuery(baseQuery1,config1,Manager.class)
+                .build();
+        ManagerHomepageListAdapter managerHomepageListAdapter = new ManagerHomepageListAdapter(options1,getActivity().getApplicationContext());
+        recyclerView_manager.setAdapter(managerHomepageListAdapter);
+        managerHomepageListAdapter.startListening();
 
         return view;
     }
@@ -216,7 +216,7 @@ public class HomeFragment extends Fragment {
                 }
                 else if(viewPager.getCurrentItem()==1)
                 {
-                    viewPager.setCurrentItem(2);
+                    viewPager.setCurrentItem(0);
                 }
                 else
                 {

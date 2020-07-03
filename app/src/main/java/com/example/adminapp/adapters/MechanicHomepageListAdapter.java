@@ -2,8 +2,10 @@ package com.example.adminapp.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,8 +23,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MechanicHomepageListAdapter extends FirebaseRecyclerPagingAdapter<Mechanic,MechanicHomepageListAdapter.MyHolder> {
     Context c;
-    private final int[] mColors = {R.color.list_color_2,R.color.list_color_3,R.color.list_color_4,R.color.list_color_5,
-            R.color.list_color_6,R.color.list_color_7,R.color.list_color_8,R.color.list_color_9,R.color.list_color_10,R.color.list_color_11};
 
     public MechanicHomepageListAdapter(@NonNull DatabasePagingOptions<Mechanic> options,Context c) {
         super(options);
@@ -31,8 +31,7 @@ public class MechanicHomepageListAdapter extends FirebaseRecyclerPagingAdapter<M
 
     @Override
     protected void onBindViewHolder(@NonNull MechanicHomepageListAdapter.MyHolder viewHolder, int position, @NonNull Mechanic model) {
-        int bgColor = ContextCompat.getColor(c, mColors[position % 10]);
-       viewHolder.cardView.setCardBackgroundColor(bgColor);
+
         viewHolder.bind(model);
     }
 
@@ -51,15 +50,40 @@ public class MechanicHomepageListAdapter extends FirebaseRecyclerPagingAdapter<M
     public class MyHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         CircleImageView profilepic;
-        TextView mechanicName;
+        TextView mechanicName,buttonViewOption;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
           cardView = itemView.findViewById(R.id.card_item);
           profilepic = itemView.findViewById(R.id.manager_pic);
           mechanicName = itemView.findViewById(R.id.manager_name);
+            buttonViewOption =  itemView.findViewById(R.id.textViewOptions);
         }
         public void bind(Mechanic model) {
-         mechanicName.setText(model.getUserName());
+
+            mechanicName.setText(model.getUserName());
+            buttonViewOption.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopupMenu popup = new PopupMenu(c, buttonViewOption);
+                    popup.inflate(R.menu.option_menu);
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()) {
+                                case R.id.menu1:
+                                    //handle menu1 click
+                                    break;
+                                case R.id.menu2:
+                                    //handle menu2 click
+                                    break;
+                            }
+                            return false;
+                        }
+                    });
+
+                    popup.show();
+                }
+            });
         }
     }
 }
