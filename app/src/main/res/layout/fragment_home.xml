@@ -45,17 +45,6 @@
             app:sliderScrollTimeInSec="1"
             app:sliderStartAutoCycle="true" />
 
-        <LinearLayout
-            android:id="@+id/slider_dots"
-            android:layout_marginTop="6dp"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@id/imageSlider"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:layout_height="wrap_content">
-
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <GridLayout
         android:id="@+id/grid_layout"
@@ -63,6 +52,8 @@
         android:layout_height="120dp"
         android:alignmentMode="alignMargins"
         android:columnCount="3"
+        android:background="@drawable/background_round_white"
+        android:layout_marginTop="10dp"
         android:columnOrderPreserved="true"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"

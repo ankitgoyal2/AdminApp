@@ -17,4 +17,10 @@
 
     </style>
 
+    <style name="TitleTextAppearance">
+        <item name="android:fontFamily">@font/imprima</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
 </resources>
