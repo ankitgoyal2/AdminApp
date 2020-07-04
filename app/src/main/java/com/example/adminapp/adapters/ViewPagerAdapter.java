@@ -11,16 +11,40 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.example.adminapp.R;
+import com.smarteist.autoimageslider.SliderViewAdapter;
 
 
-public class ViewPagerAdapter extends PagerAdapter {
+public class ViewPagerAdapter extends SliderViewAdapter<ViewPagerAdapter.SliderAdapterVH> {
     private Context context;
     private LayoutInflater layoutInflater;
-    private int [] images = {R.drawable.addemployee,R.drawable.broadcastmesg};
+    private int[] images = {R.drawable.addemployee, R.drawable.broadcastmesg,R.drawable.generateqrimg};
 
     public ViewPagerAdapter(Context context) {
         this.context = context;
+    }
+
+    @Override
+    public SliderAdapterVH onCreateViewHolder(ViewGroup parent) {
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_viewpager, null);
+        return new SliderAdapterVH(inflate);
+    }
+
+    @Override
+    public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
+
+        Glide.with(viewHolder.itemView)
+                .load(images[position])
+                .fitCenter()
+                .into(viewHolder.imageViewBackground);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -28,46 +52,16 @@ public class ViewPagerAdapter extends PagerAdapter {
         return images.length;
     }
 
-    @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return view==object;
-    }
 
-    @NonNull
-    @Override
-    public Object instantiateItem(@NonNull ViewGroup container, final int position) {
-        layoutInflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view=layoutInflater.inflate(R.layout.activity_viewpager,null);
-        ImageView imageView = (ImageView) view.findViewById(R.id.img_viewpager);
-        imageView.setImageResource(images[position]);
+    public class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
+        View itemView;
+        ImageView imageViewBackground;
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(position==0)
-                {
-                    Toast.makeText(context,"Slide 1",Toast.LENGTH_SHORT);
-                }
-                else if(position==1)
-                {
-                    Toast.makeText(context,"Slide 2",Toast.LENGTH_SHORT);
-                }
-                else
-                {
-                    Toast.makeText(context,"Slide 3",Toast.LENGTH_SHORT);
-                }
-            }
-        });
-        ViewPager vp =(ViewPager)container;
-        vp.addView(view,0);
-        return view;
-    }
+        public SliderAdapterVH(View itemView) {
+            super(itemView);
+            imageViewBackground = itemView.findViewById(R.id.iv_auto_image_slider);
+            this.itemView = itemView;
 
-    @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-
-        ViewPager vp =(ViewPager)container;
-        View view =(View)object;
-        vp.removeView(view);
+        }
     }
 }
