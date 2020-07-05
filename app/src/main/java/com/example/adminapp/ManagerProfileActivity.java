@@ -2,6 +2,7 @@ package com.example.adminapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.paging.PagedList;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,13 +53,8 @@ public class ManagerProfileActivity extends AppCompatActivity {
 
         //Horizontal recycler view
 
-        recyclerView_machine.setLayoutManager(new LinearLayoutManager(this));
-        HorizontalLayout
-                = new LinearLayoutManager(
-                this,
-                LinearLayoutManager.HORIZONTAL,
-                false);
-        recyclerView_machine.setLayoutManager(HorizontalLayout);
+        recyclerView_machine.setLayoutManager(new GridLayoutManager(this,2));
+
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         Query baseQuery = firebaseDatabase.getReference("Users").child("Manager").child(manager.getUid()).child("myMachines");
