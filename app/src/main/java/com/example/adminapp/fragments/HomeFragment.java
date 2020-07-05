@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import com.example.adminapp.BroadcastActivity;
 import com.example.adminapp.R;
 import com.example.adminapp.UsersActivity;
+import com.example.adminapp.ZoomCenterCardLayoutManager;
 import com.example.adminapp.adapters.ManagerHomepageListAdapter;
 import com.example.adminapp.adapters.MechanicHomepageListAdapter;
 import com.example.adminapp.adapters.MechanicListAdapter;
@@ -48,7 +49,7 @@ public class HomeFragment extends Fragment {
 
     Activity activity;
     FirebaseDatabase firebaseDatabase;
-    LinearLayoutManager HorizontalLayout,Horizontallayout1;
+    ZoomCenterCardLayoutManager HorizontalLayout,Horizontallayout1;
 
     public HomeFragment() {
         activity = getActivity();
@@ -105,17 +106,10 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-
         RecyclerView recyclerView_mechanic,recyclerView_manager;
 
         recyclerView_mechanic=view.findViewById(R.id.mechanic_list_rv);
-        recyclerView_mechanic.setLayoutManager(new LinearLayoutManager(getActivity()));
-        HorizontalLayout
-                = new LinearLayoutManager(
-                getActivity(),
-                LinearLayoutManager.HORIZONTAL,
-                false);
+        HorizontalLayout = new ZoomCenterCardLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         recyclerView_mechanic.setLayoutManager(HorizontalLayout);
         firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -136,12 +130,7 @@ public class HomeFragment extends Fragment {
         mechanicHomepageListAdapter.startListening();
 
         recyclerView_manager = view.findViewById(R.id.manager_list_rv);
-        recyclerView_manager.setLayoutManager(new LinearLayoutManager(getActivity()));
-        Horizontallayout1
-                = new LinearLayoutManager(
-                getActivity(),
-                LinearLayoutManager.HORIZONTAL,
-                false);
+        Horizontallayout1 =  new ZoomCenterCardLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         recyclerView_manager.setLayoutManager(Horizontallayout1);
         Query baseQuery1 = firebaseDatabase.getReference("Users").child("Manager");
         PagedList.Config config1 = new PagedList.Config.Builder()
