@@ -5,7 +5,6 @@
     android:layout_height="400dp"
     android:id="@+id/frame1"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     tools:context=".fragments.FormFragment1">
 
     <LinearLayout
@@ -14,6 +13,25 @@
         android:orientation="vertical"
         android:layout_gravity="center"
         android:padding="20dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            app:boxStrokeColor="@color/colorPrimary">
+
+            <EditText
+                android:id="@+id/mail"
+                style="@style/modifiedEditText"
+                android:hint="Enter mail id of manager"
+                android:fontFamily="@font/imprima"
+                android:textColorHint="#000"
+                android:maxLines="1"
+                android:textColor="#232323"
+                android:drawablePadding="20dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
 

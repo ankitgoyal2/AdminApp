@@ -6,7 +6,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.adminapp"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -93,4 +93,6 @@ dependencies {
     //QR code generation ( Zxing Libraries )
     implementation 'com.google.zxing:core:3.3.3'
     implementation 'com.journeyapps:zxing-android-embedded:3.4.0@aar'
+
+    implementation 'com.kofigyan.stateprogressbar:stateprogressbar:1.0.0'
 }

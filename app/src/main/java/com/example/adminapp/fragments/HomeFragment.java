@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.adminapp.BroadcastActivity;
+import com.example.adminapp.GenerateQRActivity;
 import com.example.adminapp.R;
 import com.example.adminapp.UsersActivity;
 import com.example.adminapp.ZoomCenterCardLayoutManager;
@@ -72,6 +73,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                Intent i = new Intent(activity.getApplicationContext(), GenerateQRActivity.class);
+                startActivity(i);
             }
         });
 
