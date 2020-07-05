@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.adminapp.ManagerProfileActivity;
 import com.example.adminapp.MechanicProfileActivity;
 import com.example.adminapp.R;
@@ -84,6 +85,13 @@ public class MechanicHomepageListAdapter extends FirebaseRecyclerPagingAdapter<M
         public void bind(Mechanic model) {
 
             mechanicName.setText(model.getUserName());
+
+                Glide.with(itemView)
+                        .load(model.getProfilePicLink())
+                        .fitCenter()
+                        .placeholder(R.drawable.profilepicdemo1)
+                        .into(profilepic);
+
             buttonViewOption.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

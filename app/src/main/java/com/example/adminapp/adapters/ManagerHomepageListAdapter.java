@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.adminapp.ManagerProfileActivity;
 import com.example.adminapp.R;
 import com.example.adminapp.models.Complaint;
@@ -87,6 +88,11 @@ public class ManagerHomepageListAdapter extends FirebaseRecyclerPagingAdapter<Ma
         public void bind(Manager model) {
 
             managerName.setText(model.getUserName());
+            Glide.with(itemView)
+                    .load(model.getProfilePicLink())
+                    .fitCenter()
+                    .placeholder(R.drawable.profilepicdemo)
+                    .into(profilepic);
           buttonViewOption.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {

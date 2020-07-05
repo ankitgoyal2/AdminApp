@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.adminapp.adapters.MachineAdapter;
 import com.example.adminapp.models.Machine;
 import com.example.adminapp.models.Manager;
@@ -42,6 +43,12 @@ public class ManagerProfileActivity extends AppCompatActivity {
         managerName.setText(manager.getUserName());
         managerEmail.setText(manager.getEmail());
         managerPhone.setText(manager.getPhoneNumber());
+
+        Glide.with(this)
+                .load(manager.getProfilePicLink())
+                .fitCenter()
+                .placeholder(R.drawable.profilepicdemo)
+                .into(profilepic);
 
         //Horizontal recycler view
 

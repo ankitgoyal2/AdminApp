@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.adminapp.models.Mechanic;
 
 import org.parceler.Parcels;
@@ -16,7 +17,7 @@ import java.text.DecimalFormat;
 public class MechanicProfileActivity extends AppCompatActivity {
 
     private static DecimalFormat df = new DecimalFormat("0.00");
-    ImageView profilePic;
+    ImageView profilepic;
     TextView mechanicName,mechanicEmail,mechanicPhone,mechanicRating,ratingNumber;
     @SuppressLint("DefaultLocale")
     @Override
@@ -26,7 +27,7 @@ public class MechanicProfileActivity extends AppCompatActivity {
 
         Mechanic mechanic = Parcels.unwrap(getIntent().getParcelableExtra("mechanic"));
 
-        profilePic = findViewById(R.id.mechanic_profilepic);
+        profilepic = findViewById(R.id.mechanic_profilepic);
         mechanicName = findViewById(R.id.mechanic_name);
         mechanicEmail = findViewById(R.id.mechanic_email);
         mechanicPhone = findViewById(R.id.mechanic_phone);
@@ -38,6 +39,11 @@ public class MechanicProfileActivity extends AppCompatActivity {
         float var = mechanic.getOverallRating();
         mechanicRating.setText(df.format(var));
         ratingNumber.setText(String.valueOf(mechanic.getNumberOfRating()));
+        Glide.with(this)
+                .load(mechanic.getProfilePicLink())
+                .fitCenter()
+                .placeholder(R.drawable.profilepicdemo1)
+                .into(profilepic);
 
 
     }
