@@ -12,6 +12,9 @@
         <activity android:name=".MechanicProfileActivity"></activity>
         <activity android:name=".ManagerProfileActivity" />
         <activity android:name=".GenerateQRActivity" />
+        <activity android:name=".AddEmployeeActivity">
+
+        </activity>
         <activity android:name=".BroadcastActivity" />
         <activity android:name=".BottomNavigationActivity">
             <intent-filter>
