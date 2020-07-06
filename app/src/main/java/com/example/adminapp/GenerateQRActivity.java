@@ -10,6 +10,7 @@ import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -133,7 +136,7 @@ public class GenerateQRActivity extends AppCompatActivity {
 
         nextarrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 count++;
                 if (count == 2) {
 
@@ -148,13 +151,23 @@ public class GenerateQRActivity extends AppCompatActivity {
 
                     if(department1.isEmpty())
                     {
-                        department.setError("Enter Department");
+                        Snackbar snackbar = Snackbar.make(v,"Enter Department", Snackbar.LENGTH_LONG);
+                        TextView tv = (TextView) (snackbar.getView()).findViewById(com.google.android.material.R.id.snackbar_text);
+                        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/imprima.ttf");
+                        tv.setTypeface(font);
+                        snackbar.show();
+                        department.setError("Field can't be empty");
                         department.requestFocus();
                         count--;
                     }
                     else if(machine_type.isEmpty())
                     {
-                        typeOfMachine.setError("Enter Machine Type");
+                        Snackbar snackbar = Snackbar.make(v,"Enter Machine Type", Snackbar.LENGTH_LONG);
+                        TextView tv = (TextView) (snackbar.getView()).findViewById(com.google.android.material.R.id.snackbar_text);
+                        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/imprima.ttf");
+                        tv.setTypeface(font);
+                        snackbar.show();
+                        typeOfMachine.setError("");
                         typeOfMachine.requestFocus();
                         count--;
                     }
@@ -182,25 +195,45 @@ public class GenerateQRActivity extends AppCompatActivity {
 
                     if(serialNumber1.isEmpty())
                     {
-                        serialNumber.setError("Enter Serial Number");
+                        Snackbar snackbar = Snackbar.make(v,"Enter Serial Number", Snackbar.LENGTH_LONG);
+                        TextView tv = (TextView) (snackbar.getView()).findViewById(com.google.android.material.R.id.snackbar_text);
+                        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/imprima.ttf");
+                        tv.setTypeface(font);
+                        snackbar.show();
+                        serialNumber.setError("");
                         serialNumber.requestFocus();
                         count--;
                     }
                     else if(machineCompany1.isEmpty())
                     {
-                        machineCompany.setError("Enter Company");
+                        Snackbar snackbar = Snackbar.make(v,"Enter Company", Snackbar.LENGTH_LONG);
+                        TextView tv = (TextView) (snackbar.getView()).findViewById(com.google.android.material.R.id.snackbar_text);
+                        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/imprima.ttf");
+                        tv.setTypeface(font);
+                        snackbar.show();
+                        machineCompany.setError("");
                         machineCompany.requestFocus();
                         count--;
                     }
                     else if(modelNumber1.isEmpty())
                     {
-                        modelNumber.setError("Enter Model Number");
+                        Snackbar snackbar = Snackbar.make(v,"Enter Model Number", Snackbar.LENGTH_LONG);
+                        TextView tv = (TextView) (snackbar.getView()).findViewById(com.google.android.material.R.id.snackbar_text);
+                        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/imprima.ttf");
+                        tv.setTypeface(font);
+                        snackbar.show();
+                        modelNumber.setError("");
                         modelNumber.requestFocus();
                         count--;
                     }
                     else if(serviceTime1.isEmpty())
                     {
-                        serviceTime.setError("Enter Service Time");
+                        Snackbar snackbar = Snackbar.make(v,"Enter Service Time", Snackbar.LENGTH_LONG);
+                        TextView tv = (TextView) (snackbar.getView()).findViewById(com.google.android.material.R.id.snackbar_text);
+                        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/imprima.ttf");
+                        tv.setTypeface(font);
+                        snackbar.show();
+                        serviceTime.setError("");
                         serviceTime.requestFocus();
                         count--;
                     }
@@ -229,7 +262,12 @@ public class GenerateQRActivity extends AppCompatActivity {
 
                     if(managerMail1.isEmpty())
                     {
-                        managerMail.setError("Enter mail id of manager");
+                        Snackbar snackbar = Snackbar.make(v,"Enter mail id of manager", Snackbar.LENGTH_LONG);
+                        TextView tv = (TextView) (snackbar.getView()).findViewById(com.google.android.material.R.id.snackbar_text);
+                        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/imprima.ttf");
+                        tv.setTypeface(font);
+                        snackbar.show();
+                        managerMail.setError("");
                         managerMail.requestFocus();
                         count--;
                     }
@@ -249,31 +287,56 @@ public class GenerateQRActivity extends AppCompatActivity {
                                 }
                                 if(managerUid.equals(""))
                                 {
-                                    managerMail.setError("Enter correct mail id of manager");
+                                    Snackbar snackbar = Snackbar.make(v,"Enter correct mail id of manager", Snackbar.LENGTH_LONG);
+                                    TextView tv = (TextView) (snackbar.getView()).findViewById(com.google.android.material.R.id.snackbar_text);
+                                    Typeface font = Typeface.createFromAsset(getAssets(), "fonts/imprima.ttf");
+                                    tv.setTypeface(font);
+                                    snackbar.show();
+                                    managerMail.setError("");
                                     managerMail.requestFocus();
                                     count--;
                                 }
                                 else if(installationDate1.isEmpty())
                                 {
-                                    installationDate.setError("Enter Installation Date");
+                                    Snackbar snackbar = Snackbar.make(v,"Enter Installation Date", Snackbar.LENGTH_LONG);
+                                    TextView tv = (TextView) (snackbar.getView()).findViewById(com.google.android.material.R.id.snackbar_text);
+                                    Typeface font = Typeface.createFromAsset(getAssets(), "fonts/imprima.ttf");
+                                    tv.setTypeface(font);
+                                    snackbar.show();
+                                    installationDate.setError("");
                                     installationDate.requestFocus();
                                     count--;
                                 }
                                 else if(machinePrice1.isEmpty())
                                 {
-                                    machinePrice.setError("Enter Machine Price");
+                                    Snackbar snackbar = Snackbar.make(v,"Enter Machine Price", Snackbar.LENGTH_LONG);
+                                    TextView tv = (TextView) (snackbar.getView()).findViewById(com.google.android.material.R.id.snackbar_text);
+                                    Typeface font = Typeface.createFromAsset(getAssets(), "fonts/imprima.ttf");
+                                    tv.setTypeface(font);
+                                    snackbar.show();
+                                    machinePrice.setError("");
                                     machinePrice.requestFocus();
                                     count--;
                                 }
                                 else if(life1.isEmpty())
                                 {
-                                    life.setError("Enter Expected Life");
+                                    Snackbar snackbar = Snackbar.make(v,"Enter Expected Life", Snackbar.LENGTH_LONG);
+                                    TextView tv = (TextView) (snackbar.getView()).findViewById(com.google.android.material.R.id.snackbar_text);
+                                    Typeface font = Typeface.createFromAsset(getAssets(), "fonts/imprima.ttf");
+                                    tv.setTypeface(font);
+                                    snackbar.show();
+                                    life.setError("");
                                     life.requestFocus();
                                     count--;
                                 }
                                 else if(scrapValue1.isEmpty())
                                 {
-                                    scrapValue.setError("Enter Scrap Value");
+                                    Snackbar snackbar = Snackbar.make(v,"Enter Scrap Value", Snackbar.LENGTH_LONG);
+                                    TextView tv = (TextView) (snackbar.getView()).findViewById(com.google.android.material.R.id.snackbar_text);
+                                    Typeface font = Typeface.createFromAsset(getAssets(), "fonts/imprima.ttf");
+                                    tv.setTypeface(font);
+                                    snackbar.show();
+                                    scrapValue.setError("");
                                     scrapValue.requestFocus();
                                     count--;
                                 }
