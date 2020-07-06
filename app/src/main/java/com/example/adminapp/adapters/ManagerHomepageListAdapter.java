@@ -1,6 +1,7 @@
 package com.example.adminapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,12 +13,18 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.adminapp.ManagerProfileActivity;
 import com.example.adminapp.R;
+import com.example.adminapp.models.Complaint;
 import com.example.adminapp.models.Manager;
 import com.example.adminapp.models.Mechanic;
 import com.firebase.ui.database.paging.DatabasePagingOptions;
 import com.firebase.ui.database.paging.FirebaseRecyclerPagingAdapter;
 import com.firebase.ui.database.paging.LoadingState;
+import com.google.firebase.database.DataSnapshot;
+
+import org.parceler.Parcels;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -59,10 +66,33 @@ public class ManagerHomepageListAdapter extends FirebaseRecyclerPagingAdapter<Ma
             profilepic = itemView.findViewById(R.id.manager_pic);
             managerName = itemView.findViewById(R.id.manager_name);
             buttonViewOption =  itemView.findViewById(R.id.textViewOptions);
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DataSnapshot dataSnapshot = getItem(getAdapterPosition());
+                    Manager manager = null;
+                    if (dataSnapshot != null) {
+                        manager = dataSnapshot.getValue(Manager.class);
+                    }
+
+                    if(manager!=null && manager.getUserName()!=null) {
+                        Intent intent = new Intent(c, ManagerProfileActivity.class);
+                        intent.putExtra("manager", Parcels.wrap(manager));
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        c.getApplicationContext().startActivity(intent);
+                    }
+                }
+            });
         }
         public void bind(Manager model) {
 
             managerName.setText(model.getUserName());
+            Glide.with(itemView)
+                    .load(model.getProfilePicLink())
+                    .fitCenter()
+                    .placeholder(R.drawable.profilepicdemo)
+                    .into(profilepic);
           buttonViewOption.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {

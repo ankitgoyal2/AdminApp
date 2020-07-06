@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    tools:context=".MechanicProfileActivity">
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="210dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/back_img"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,10 +18,10 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView"
+        android:id="@+id/mechanic_profilepic"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@drawable/profilepicdemo"
+        android:src="@drawable/profilepicdemo1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -30,7 +30,7 @@
         app:layout_constraintVertical_bias="0.218" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/mechanic_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/imprima"
@@ -41,7 +41,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circleImageView"
+        app:layout_constraintTop_toBottomOf="@+id/mechanic_profilepic"
         app:layout_constraintVertical_bias="0.044" />
 
     <LinearLayout
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/mechanic_name"
         app:layout_constraintVertical_bias="0.029">
 
         <ImageView
@@ -66,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:id="@+id/mechanic_email"
             android:fontFamily="@font/imprima"
             android:text="mechanic1@gmail.com"
             android:textColor="#E2000000"
@@ -92,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:id="@+id/phone_tv"
+            android:id="@+id/mechanic_phone"
             android:clickable="true"
             android:autoLink="phone"
             android:fontFamily="@font/imprima"
@@ -124,6 +125,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/mechanic_rating"
             android:layout_marginRight="10dp"
             android:fontFamily="@font/imprima"
             android:text="4.2"
@@ -165,6 +167,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:fontFamily="@font/imprima"
+            android:id="@+id/no_of_rating"
             android:text="448"
             android:textColor="#275F73"
             android:textSize="18sp" />
@@ -187,7 +190,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-         android:paddingLeft="20dp"
+        android:paddingLeft="20dp"
         android:paddingRight="20dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,6 +1,7 @@
 package com.example.adminapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,11 +14,18 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.adminapp.ManagerProfileActivity;
+import com.example.adminapp.MechanicProfileActivity;
 import com.example.adminapp.R;
+import com.example.adminapp.models.Manager;
 import com.example.adminapp.models.Mechanic;
 import com.firebase.ui.database.paging.DatabasePagingOptions;
 import com.firebase.ui.database.paging.FirebaseRecyclerPagingAdapter;
 import com.firebase.ui.database.paging.LoadingState;
+import com.google.firebase.database.DataSnapshot;
+
+import org.parceler.Parcels;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -57,10 +65,33 @@ public class MechanicHomepageListAdapter extends FirebaseRecyclerPagingAdapter<M
           profilepic = itemView.findViewById(R.id.manager_pic);
           mechanicName = itemView.findViewById(R.id.manager_name);
             buttonViewOption =  itemView.findViewById(R.id.textViewOptions);
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DataSnapshot dataSnapshot = getItem(getAdapterPosition());
+                    Mechanic mechanic= null;
+                    if (dataSnapshot != null) {
+                        mechanic = dataSnapshot.getValue(Mechanic.class);
+                    }
+                    if(mechanic!=null && mechanic.getUserName()!=null) {
+                        Intent intent = new Intent(c, MechanicProfileActivity.class);
+                        intent.putExtra("mechanic", Parcels.wrap(mechanic));
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        c.getApplicationContext().startActivity(intent);
+                    }
+                }
+            });
         }
         public void bind(Mechanic model) {
 
             mechanicName.setText(model.getUserName());
+
+                Glide.with(itemView)
+                        .load(model.getProfilePicLink())
+                        .fitCenter()
+                        .placeholder(R.drawable.profilepicdemo1)
+                        .into(profilepic);
+
             buttonViewOption.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
