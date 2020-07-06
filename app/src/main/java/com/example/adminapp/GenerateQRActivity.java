@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.badoualy.stepperindicator.StepperIndicator;
 import com.example.adminapp.R;
 import com.example.adminapp.fragments.FormFragment1;
 import com.example.adminapp.fragments.FormFragment2;
@@ -31,6 +32,7 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -86,11 +88,13 @@ public class GenerateQRActivity extends AppCompatActivity {
         toolbar.setTitleTextAppearance(this,R.style.TitleTextAppearance);
         final FormFragment1 fragment1 = new FormFragment1();
         setOurFragment(fragment1);
-        final StateProgressBar stateProgressBar = (StateProgressBar) findViewById(R.id.your_stare_progress_id_bar);
-        stateProgressBar.setStateDescriptionData(descriptionData);
-
-        stateProgressBar.setStateDescriptionTypeface("fonts/imprima.ttf");
-        stateProgressBar.setStateNumberTypeface( "fonts/imprima.ttf");
+        final StepperIndicator indicator = findViewById(R.id.stepper_indicator);
+        indicator.setCurrentStep(0);
+//        final StateProgressBar stateProgressBar = (StateProgressBar) findViewById(R.id.your_stare_progress_id_bar);
+//        stateProgressBar.setStateDescriptionData(descriptionData);
+//
+//        stateProgressBar.setStateDescriptionTypeface("fonts/imprima.ttf");
+//        stateProgressBar.setStateNumberTypeface( "fonts/imprima.ttf");
 
         firebaseDatabase  = FirebaseDatabase.getInstance();
         generationCodeReference = firebaseDatabase.getReference("GenerationCode");
@@ -123,8 +127,8 @@ public class GenerateQRActivity extends AppCompatActivity {
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
         }
 
-        final Button nextarrow = (Button) findViewById(R.id.next_arrow);
-        final Button prevarrow = (Button) findViewById(R.id.prev_arrow);
+        final FloatingActionButton nextarrow =  findViewById(R.id.next_arrow);
+        final FloatingActionButton prevarrow = findViewById(R.id.prev_arrow);
 
 
         nextarrow.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +159,9 @@ public class GenerateQRActivity extends AppCompatActivity {
                         count--;
                     }
                     else {
-                        stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+                        indicator.setCurrentStep(1);
+                        indicator.animate();
+//                        stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
                         setOurFragment(new FormFragment2());
                         prevarrow.setVisibility(View.VISIBLE);
                     }
@@ -176,30 +182,31 @@ public class GenerateQRActivity extends AppCompatActivity {
 
                     if(serialNumber1.isEmpty())
                     {
-                        serialNumber.setError("Enter Department");
+                        serialNumber.setError("Enter Serial Number");
                         serialNumber.requestFocus();
                         count--;
                     }
                     else if(machineCompany1.isEmpty())
                     {
-                        machineCompany.setError("Enter Department");
+                        machineCompany.setError("Enter Company");
                         machineCompany.requestFocus();
                         count--;
                     }
                     else if(modelNumber1.isEmpty())
                     {
-                        modelNumber.setError("Enter Department");
+                        modelNumber.setError("Enter Model Number");
                         modelNumber.requestFocus();
                         count--;
                     }
                     else if(serviceTime1.isEmpty())
                     {
-                        serviceTime.setError("Enter Department");
+                        serviceTime.setError("Enter Service Time");
                         serviceTime.requestFocus();
                         count--;
                     }
                     else {
-                        stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
+                        indicator.setCurrentStep(2);
+//                        stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
                         setOurFragment(new FormFragment3());
                     }
 
@@ -246,28 +253,28 @@ public class GenerateQRActivity extends AppCompatActivity {
                                     managerMail.requestFocus();
                                     count--;
                                 }
-                                else if(machinePrice1.isEmpty())
-                                {
-                                    machinePrice.setError("Enter Department");
-                                    machinePrice.requestFocus();
-                                    count--;
-                                }
                                 else if(installationDate1.isEmpty())
                                 {
-                                    installationDate.setError("Enter Department");
+                                    installationDate.setError("Enter Installation Date");
                                     installationDate.requestFocus();
                                     count--;
                                 }
-                                else if(scrapValue1.isEmpty())
+                                else if(machinePrice1.isEmpty())
                                 {
-                                    scrapValue.setError("Enter Department");
-                                    scrapValue.requestFocus();
+                                    machinePrice.setError("Enter Machine Price");
+                                    machinePrice.requestFocus();
                                     count--;
                                 }
                                 else if(life1.isEmpty())
                                 {
-                                    life.setError("Enter Department");
+                                    life.setError("Enter Expected Life");
                                     life.requestFocus();
+                                    count--;
+                                }
+                                else if(scrapValue1.isEmpty())
+                                {
+                                    scrapValue.setError("Enter Scrap Value");
+                                    scrapValue.requestFocus();
                                     count--;
                                 }
                                 else {
@@ -363,13 +370,15 @@ public class GenerateQRActivity extends AppCompatActivity {
                     finish();
                 }
                 else if (count == 1) {
-                    stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
+//                    stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
+                    indicator.setCurrentStep(0);
                     setOurFragment(fragment1);
                     prevarrow.setVisibility(View.INVISIBLE);
 
                 } else if (count == 2) {
 
-                    stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+                    indicator.setCurrentStep(1);
+//                    stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
                     setOurFragment(new FormFragment2());
                 } else {
 

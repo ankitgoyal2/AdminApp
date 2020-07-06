@@ -95,4 +95,8 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:3.4.0@aar'
 
     implementation 'com.kofigyan.stateprogressbar:stateprogressbar:1.0.0'
+    //Stepper
+    implementation 'com.github.badoualy:stepper-indicator:1.0.7'
+
+
 }

@@ -15,6 +15,7 @@
     <style name="modifiedEditText" parent="parent">
         <item name="android:textSize">15dp</item>
 
+
     </style>
 
     <style name="TitleTextAppearance">
