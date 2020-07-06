@@ -6,27 +6,23 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
+import com.example.adminapp.AddEmployeeActivity;
 import com.example.adminapp.BroadcastActivity;
 import com.example.adminapp.R;
 import com.example.adminapp.UsersActivity;
 import com.example.adminapp.ZoomCenterCardLayoutManager;
 import com.example.adminapp.adapters.ManagerHomepageListAdapter;
 import com.example.adminapp.adapters.MechanicHomepageListAdapter;
-import com.example.adminapp.adapters.MechanicListAdapter;
 import com.example.adminapp.adapters.ViewPagerAdapter;
 import com.example.adminapp.models.Manager;
 import com.example.adminapp.models.Mechanic;
@@ -36,10 +32,6 @@ import com.google.firebase.database.Query;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
-
-import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class HomeFragment extends Fragment {
@@ -65,7 +57,7 @@ public class HomeFragment extends Fragment {
         activity = getActivity();
 
         ImageView generateQr = view.findViewById(R.id.generate_qr);
-        ImageView manageUsers = view.findViewById(R.id.manage_users);
+        ImageView addEmployee = view.findViewById(R.id.add_employee);
         ImageView broadcast = view.findViewById(R.id.broadcast);
 
         generateQr.setOnClickListener(new View.OnClickListener() {
@@ -75,10 +67,10 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        manageUsers.setOnClickListener(new View.OnClickListener() {
+        addEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(activity.getApplicationContext(), UsersActivity.class);
+                Intent i = new Intent(activity.getApplicationContext(), AddEmployeeActivity.class);
                 startActivity(i);
 
             }
