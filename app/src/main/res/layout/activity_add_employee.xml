@@ -195,7 +195,7 @@
         android:id="@+id/btn_float"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#009688"
+        android:backgroundTint="#A1E8A8"
         android:src="@drawable/ic_baseline_done_24"
         android:tint="#fff"
         app:rippleColor="#4CAF50"
