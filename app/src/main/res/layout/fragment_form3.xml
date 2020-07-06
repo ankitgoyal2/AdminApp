@@ -9,89 +9,109 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="470dp"
         android:layout_gravity="center"
         android:orientation="vertical"
         android:padding="20dp">
 
         <com.google.android.material.textfield.TextInputLayout
 
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            app:boxStrokeColor="@color/colorPrimary">
+
+            <EditText
+                android:id="@+id/mail"
+                style="@style/modifiedEditText"
+                android:drawablePadding="20dp"
+                android:fontFamily="@font/imprima"
+                android:hint="Enter mail id of manager"
+                android:maxLines="1"
+                android:textColor="#232323"
+                android:textColorHint="#000" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/loginViewsMargin"
             app:boxStrokeColor="@color/colorPrimary">
 
             <EditText
                 android:id="@+id/installation_date"
                 style="@style/modifiedEditText"
+                android:drawableLeft="@drawable/ic_calendar"
+                android:drawablePadding="20dp"
+                android:fontFamily="@font/imprima"
                 android:hint="Enter Date of Installation"
                 android:maxLines="1"
-                android:fontFamily="@font/imprima"
-                android:textColorHint="#000"
                 android:textColor="#232323"
-                android:drawableLeft="@drawable/ic_calendar"
-                android:drawablePadding="20dp"/>
+                android:textColorHint="#000" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
 
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/loginViewsMargin"
             app:boxStrokeColor="@color/colorPrimary">
 
             <EditText
                 android:id="@+id/price"
                 style="@style/modifiedEditText"
-                android:hint="Enter Machine Price"
                 android:drawableLeft="@drawable/ic_price"
                 android:drawablePadding="20dp"
-                android:textColor="#232323"
                 android:fontFamily="@font/imprima"
-                android:textColorHint="#000"
-                android:maxLines="1" />
+                android:hint="Enter Machine Price"
+                android:maxLines="1"
+                android:textColor="#232323"
+                android:textColorHint="#000" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
 
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/loginViewsMargin"
             app:boxStrokeColor="@color/colorPrimary">
 
             <EditText
                 android:id="@+id/life"
                 style="@style/modifiedEditText"
-                android:hint="Enter Expected Life of Machine"
                 android:drawableLeft="@drawable/ic_expected_life"
                 android:drawablePadding="20dp"
                 android:fontFamily="@font/imprima"
+                android:hint="Enter Expected Life of Machine"
+                android:maxLines="1"
                 android:textColor="#232323"
-                android:textColorHint="#000"
-                android:maxLines="1" />
+                android:textColorHint="#000" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
 
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/loginViewsMargin"
             app:boxStrokeColor="@color/colorPrimary">
 
             <EditText
                 android:id="@+id/scrap_value"
                 style="@style/modifiedEditText"
-                android:hint="Enter Expected Scrap Value"
                 android:drawableLeft="@drawable/ic_price"
                 android:drawablePadding="20dp"
                 android:fontFamily="@font/imprima"
-                android:textColorHint="#000"
+                android:hint="Enter Expected Scrap Value"
+                android:maxLines="1"
                 android:textColor="#232323"
-                android:maxLines="1" />
+                android:textColorHint="#000" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
