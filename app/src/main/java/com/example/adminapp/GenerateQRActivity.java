@@ -135,53 +135,13 @@ public class GenerateQRActivity extends AppCompatActivity {
 
                     FormFragment1 formFragment1 = (FormFragment1) getSupportFragmentManager().findFragmentById(R.id.mainframe);
                     if (formFragment1 != null) {
-                        managerMail = formFragment1.getView().findViewById(R.id.mail);
                         department = formFragment1.getView().findViewById(R.id.department);
                         typeOfMachine = formFragment1.getView().findViewById(R.id.machine_type);
                     }
-                    final String department1,machine_type, managerMail1;
+                    final String department1,machine_type;
                     department1 = department.getText().toString().trim();
                     machine_type = typeOfMachine.getText().toString().trim();
-                    managerMail1 = managerMail.getText().toString().trim();
 
-
-                    if(managerMail1.isEmpty())
-                    {
-                        managerMail.setError("Enter mail id of manager");
-                        managerMail.requestFocus();
-                        count--;
-                    }
-                    else
-                    {
-//                        managerListReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                for(DataSnapshot manager1 : dataSnapshot.getChildren())
-//                                {
-//                                    Manager manager2 = manager1.getValue(Manager.class);
-//                                    if(manager2.getEmail().equals(managerMail1))
-//                                    {
-//                                        managerUid=managerUid+manager2.getUid();
-//
-//                                    }
-//                                }
-//                            }
-//
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                            }
-//                        });
-
-                        managerUid="FG8f0OMdRPepB192PNZZdprfLu42";
-
-                        if(managerUid.equals(""))
-                        {
-                            managerMail.setError("Enter correct mail id of manager");
-                            managerMail.requestFocus();
-                            count--;
-                        }
-                    }
                     if(department1.isEmpty())
                     {
                         department.setError("Enter Department");
@@ -213,6 +173,7 @@ public class GenerateQRActivity extends AppCompatActivity {
                     machineCompany1=machineCompany.getText().toString().trim();
                     modelNumber1=modelNumber.getText().toString().trim();
                     serviceTime1=serviceTime.getText().toString().trim();
+
                     if(serialNumber1.isEmpty())
                     {
                         serialNumber.setError("Enter Department");
@@ -246,107 +207,147 @@ public class GenerateQRActivity extends AppCompatActivity {
 
                     FormFragment3 formFragment3 = (FormFragment3) getSupportFragmentManager().findFragmentById(R.id.mainframe);
                     if (formFragment3 != null) {
+                        managerMail = formFragment3.getView().findViewById(R.id.mail);
                         machinePrice = Objects.requireNonNull(formFragment3.getView()).findViewById(R.id.price);
                         installationDate = formFragment3.getView().findViewById(R.id.installation_date);
                         scrapValue = Objects.requireNonNull(formFragment3.getView()).findViewById(R.id.scrap_value);
                         life = Objects.requireNonNull(formFragment3.getView()).findViewById(R.id.life);
                     }
-                    final String machinePrice1,installationDate1,scrapValue1,life1;
+                    final String machinePrice1,installationDate1,scrapValue1,life1,managerMail1;
                     machinePrice1 = machinePrice.getText().toString().trim();
                     installationDate1=installationDate.getText().toString().trim();
                     scrapValue1=scrapValue.getText().toString().trim();
                     life1=life.getText().toString().trim();
-                    if(machinePrice1.isEmpty())
+                    managerMail1 = managerMail.getText().toString().trim();
+
+                    if(managerMail1.isEmpty())
                     {
-                        machinePrice.setError("Enter Department");
-                        machinePrice.requestFocus();
+                        managerMail.setError("Enter mail id of manager");
+                        managerMail.requestFocus();
                         count--;
                     }
-                    else if(installationDate1.isEmpty())
+                    else
                     {
-                        installationDate.setError("Enter Department");
-                        installationDate.requestFocus();
-                        count--;
-                    }
-                    else if(scrapValue1.isEmpty())
-                    {
-                        scrapValue.setError("Enter Department");
-                        scrapValue.requestFocus();
-                        count--;
-                    }
-                    else if(life1.isEmpty())
-                    {
-                        life.setError("Enter Department");
-                        life.requestFocus();
-                        count--;
-                    }
-                    else {
-                        if (generationCodeValue != 0) {
-
-                            // update value to database.
-                            MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-                            try {
-                                BitMatrix bitMatrix = multiFormatWriter.encode(String.valueOf(generationCodeValue), BarcodeFormat.QR_CODE, 200, 200);
-                                BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-                                Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);// bitmap contains QRCode image.
-                                //final BottomSheetDialog bottomSheet = new BottomSheetDialog(generationCodeValue, bitmap);
-                                //bottomSheet.show(getSupportFragmentManager(), bottomSheet.getTag());
-
-                                //qrcode.setImageBitmap(bitmap);
-
-                                uploadQR(bitmap); // upload QRcode image to FirebaseStorage
-//                             save.setVisibility(View.VISIBLE);
-//                             GenerateQR.setVisibility(View.INVISIBLE);
-//                             aqwesd.setVisibility(View.INVISIBLE);
-//                             linearLayoutimage.setVisibility(View.VISIBLE);
-//                             enter_details.setText("QR Code");
-//                             qrtext.setImageResource(R.drawable.ic_qr_code);
-//                             linearLayout.setVisibility(View.INVISIBLE);
-
-                            } catch (WriterException e) {
-                                e.printStackTrace();
-                            }
-                        } else {
-                            Toast.makeText(GenerateQRActivity.this, "failed", Toast.LENGTH_SHORT).show();
-                        }
-
-
-                        installationDate.setOnClickListener(new View.OnClickListener() {
+                        managerListReference.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
-                            public void onClick(View view) {
-                                Calendar cal = Calendar.getInstance();
-                                int year = cal.get(Calendar.YEAR);
-                                int month = cal.get(Calendar.MONTH);
-                                int day = cal.get(Calendar.DAY_OF_MONTH);
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for(DataSnapshot manager1 : dataSnapshot.getChildren())
+                                {
+                                    Manager manager2 = manager1.getValue(Manager.class);
+                                    if(manager2.getEmail().equals(managerMail1))
+                                    {
+                                        managerUid=managerUid+manager2.getUid();
 
-                                DatePickerDialog dialog = new DatePickerDialog(
-                                        GenerateQRActivity.this,
-                                        //android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                                        mDateSetListener,
-                                        year, month, day);
-                                // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                                dialog.show();
+                                    }
+                                }
+                                if(managerUid.equals(""))
+                                {
+                                    managerMail.setError("Enter correct mail id of manager");
+                                    managerMail.requestFocus();
+                                    count--;
+                                }
+                                else if(machinePrice1.isEmpty())
+                                {
+                                    machinePrice.setError("Enter Department");
+                                    machinePrice.requestFocus();
+                                    count--;
+                                }
+                                else if(installationDate1.isEmpty())
+                                {
+                                    installationDate.setError("Enter Department");
+                                    installationDate.requestFocus();
+                                    count--;
+                                }
+                                else if(scrapValue1.isEmpty())
+                                {
+                                    scrapValue.setError("Enter Department");
+                                    scrapValue.requestFocus();
+                                    count--;
+                                }
+                                else if(life1.isEmpty())
+                                {
+                                    life.setError("Enter Department");
+                                    life.requestFocus();
+                                    count--;
+                                }
+                                else {
+                                    if (generationCodeValue != 0) {
+
+                                        // update value to database.
+                                        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+                                        try {
+                                            BitMatrix bitMatrix = multiFormatWriter.encode(String.valueOf(generationCodeValue), BarcodeFormat.QR_CODE, 200, 200);
+                                            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                                            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);// bitmap contains QRCode image.
+                                            //final BottomSheetDialog bottomSheet = new BottomSheetDialog(generationCodeValue, bitmap);
+                                            //bottomSheet.show(getSupportFragmentManager(), bottomSheet.getTag());
+
+                                            //qrcode.setImageBitmap(bitmap);
+
+                                            managerReference = firebaseDatabase.getReference("Users").child("Manager").child(managerUid);
+
+                                            managerReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                    manager = dataSnapshot.getValue(Manager.class);
+                                                    myMachines = manager != null ? manager.getMyMachines() :  null;
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                }
+                                            });
+
+                                            uploadQR(bitmap); // upload QRcode image to FirebaseStorage
+
+                                        } catch (WriterException e) {
+                                            e.printStackTrace();
+                                        }
+                                    } else {
+                                        Toast.makeText(GenerateQRActivity.this, "failed", Toast.LENGTH_SHORT).show();
+                                    }
+
+
+                                    installationDate.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Calendar cal = Calendar.getInstance();
+                                            int year = cal.get(Calendar.YEAR);
+                                            int month = cal.get(Calendar.MONTH);
+                                            int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                                            DatePickerDialog dialog = new DatePickerDialog(
+                                                    GenerateQRActivity.this,
+                                                    //android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                                                    mDateSetListener,
+                                                    year, month, day);
+                                            // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                            dialog.show();
+                                        }
+                                    });
+
+                                    mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+                                        @Override
+                                        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                                            month = month + 1;
+                                            String date = day + "/" + month + "/" + year;
+                                            installationDate.setText(date);
+                                        }
+                                    };
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
                             }
                         });
 
-                        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                month = month + 1;
-                                String date = day + "/" + month + "/" + year;
-                                installationDate.setText(date);
-                            }
-                        };
-
-//                     save.setOnClickListener(new View.OnClickListener() {
-//                         @Override
-//                         public void onClick(View v) {
-//                             //   saveImage();
-//
-//                         }
-//                     });
 
                     }
+
                 }
             }
         });
@@ -377,20 +378,7 @@ public class GenerateQRActivity extends AppCompatActivity {
             }
         });
 
-        managerReference = firebaseDatabase.getReference("Users").child("Manager").child(managerUid);
 
-        managerReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                manager = dataSnapshot.getValue(Manager.class);
-                myMachines = manager != null ? manager.getMyMachines() :  null;
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
     }
 
