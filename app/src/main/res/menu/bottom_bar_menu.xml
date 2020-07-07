@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cnb_unselectedColor="#fff"
+    >
+
+    <item android:id="@+id/home"
+          android:title="Home"
+        android:icon="@drawable/ic_home"
+        app:cnb_backgroundColor="#ff785b"
+        app:cnb_iconColor="#fff"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="#fff"
+        />
+    <item android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_account"
+        app:cnb_backgroundColor="#ff785b"
+        app:cnb_iconColor="#fff"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="#fff"
+        />
+</menu>
