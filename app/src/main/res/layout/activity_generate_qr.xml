@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GenerateQRActivity"
-    android:background="@mipmap/background4"
+    android:background="@mipmap/background3"
     android:orientation="vertical"
 
     >
@@ -17,6 +17,12 @@
         android:background="#fff"
         app:titleTextColor="#3A3A3A"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -43,21 +49,19 @@
             />
     </LinearLayout>
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="420dp">
+
     <FrameLayout
         android:id="@+id/mainframe"
         android:layout_width="match_parent"
 
-        android:layout_height="wrap_content"
+        android:layout_height="420dp"
         android:paddingTop="10dp"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
     </FrameLayout>
-</ScrollView>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,7 +94,7 @@
 
     </RelativeLayout>
 
-
+    </LinearLayout>
 
 </LinearLayout>
 

@@ -275,7 +275,7 @@
             android:scaleX="2.5"
             android:scaleY="2.5"
 
-            android:src="@drawable/ic_broadcast"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.95"
