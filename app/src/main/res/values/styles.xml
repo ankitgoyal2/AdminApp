@@ -24,4 +24,10 @@
 
     </style>
 
+    <style name="DetailsView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2dp</item>
+        <item name="android:background">@color/AccentColor</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
 </resources>

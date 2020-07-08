@@ -8,14 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".BottomNavigationActivity"
     >
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        app:title="Home"
-        android:layout_alignParentTop="true"
-        app:titleTextColor="#fff"
-        android:background="@color/darktext"
-        />
+
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
@@ -34,26 +27,20 @@
         tools:ignore="UnknownId" />
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_bar"
-        android:layout_marginTop="45dp"
-        >
+
 
         <FrameLayout
             android:id="@+id/mainframe"
             android:layout_width="match_parent"
-            android:layout_height="658dp"
+            android:layout_height="match_parent"
             android:layout_above="@+id/bottom_bar"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
             android:layout_marginBottom="3dp">
 
         </FrameLayout>
-    </ScrollView>
+
 
 
 </RelativeLayout>
