@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +18,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.functions.FirebaseFunctions;
 import com.google.firebase.functions.HttpsCallableResult;
 
@@ -26,7 +31,7 @@ public class BroadcastActivity extends AppCompatActivity {
 
     ImageView back;
     EditText subject,message;
-    Button send;
+    ExtendedFloatingActionButton send;
     String receiver;
 
     FirebaseFunctions firebaseFunctions;
@@ -52,24 +57,43 @@ public class BroadcastActivity extends AppCompatActivity {
                 finish();
             }
         });
-        
-        final MaterialCardView managerCardView  = findViewById(R.id.manager);
-        managerCardView.setOnClickListener(new View.OnClickListener() {
+
+        final Chip manager  = findViewById(R.id.manager_chip);
+       manager.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               if(isChecked)
+               {
+                   receiver = "manager";
+               }
+           }
+       });
+
+        final Chip mechanic  = findViewById(R.id.mechanic_chip);
+        mechanic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                managerCardView.setChecked(!managerCardView.isChecked());
-                receiver = "manager";
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if(isChecked)
+                {
+                    receiver = "mechanic";
+                }
+
+            }
+        });
+        final Chip all = findViewById(R.id.all_chip);
+        mechanic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if(isChecked)
+                {
+                    receiver = "all";
+                }
+
             }
         });
 
-        final MaterialCardView mechanicCardView  = findViewById(R.id.mechanic);
-        mechanicCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mechanicCardView.setChecked(!mechanicCardView.isChecked());
-                receiver = "mechanic";
-            }
-        });
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -30,4 +30,29 @@
         <item name="android:background">@color/AccentColor</item>
         <item name="android:layout_marginTop">5dp</item>
     </style>
+
+
+    <style name="My_Widget.MaterialComponents.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        <!-- Chip background color selector -->
+        <item name="chipBackgroundColor">@color/bg_chip1</item>
+        <!-- Border color -->
+        <item name="chipStrokeColor">#9C27B0</item>
+
+        <!-- Chip text color selector -->
+        <item name="android:textColor">@color/bg_chiptext1</item>
+        <item name="fontFamily">@font/imprima</item>
+
+        <item name="closeIconTint">#000</item>
+    </style>
+    <style name="My_Widget.MaterialComponents.Chip.Choice2" parent="Widget.MaterialComponents.Chip.Choice">
+        <!-- Chip background color selector -->
+        <item name="chipBackgroundColor">@color/bg_chip2</item>
+        <!-- Border color -->
+        <item name="chipStrokeColor">#009688</item>
+
+        <!-- Chip text color selector -->
+        <item name="android:textColor">@color/bg_chiptext2</item>
+
+        <item name="closeIconTint">#000</item>
+    </style>
 </resources>

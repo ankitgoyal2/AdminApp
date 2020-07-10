@@ -5,12 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0F1E2D"
+   android:background="@mipmap/background5"
     tools:context=".BroadcastActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
@@ -18,7 +19,7 @@
             android:layout_height="200dp"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="7dp"
-            android:background = "@drawable/broadcast_box_1"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -31,6 +32,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/ic_arrow_back_white_24dp"
+                android:tint="#000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.03"
@@ -46,7 +48,7 @@
                 android:fontFamily="@font/allerta"
                 android:text="Broadcast Service"
                 android:textAlignment="center"
-                android:textColor="#ffffff"
+                android:textColor="#050505"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -65,7 +67,7 @@
                 android:fontFamily="@font/jacques_francois"
                 android:text="Your message will be sent to everyone"
                 android:textAlignment="center"
-                android:textColor="#ffffff"
+                android:textColor="#191818"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,226 +80,124 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_marginTop="20dp"
+           >
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Select Recipients:"
+               android:textColor="#000"
+               android:textSize="20sp"
+               android:padding="5dp"
+               android:layout_marginLeft="20dp"
+               android:fontFamily="@font/imprima"
+               />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+               <com.google.android.material.chip.ChipGroup
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="20dp"
+                   app:singleSelection="true"
+                   >
+                   <com.google.android.material.chip.Chip
+                       android:id="@+id/manager_chip"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Manager"
+                       style="@style/My_Widget.MaterialComponents.Chip.Choice"
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout5"
+                       app:chipStrokeWidth="1dp"
+
+                       ></com.google.android.material.chip.Chip>
+                   <com.google.android.material.chip.Chip
+                       android:id="@+id/mechanic_chip"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="20dp"
+                       android:text="Mechanic"
+                       style="@style/My_Widget.MaterialComponents.Chip.Choice"
+                       app:chipStrokeWidth="1dp"
+
+                       ></com.google.android.material.chip.Chip>
+                   <com.google.android.material.chip.Chip
+                       android:id="@+id/all_chip"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="20dp"
+                       android:text="All Users"
+                       style="@style/My_Widget.MaterialComponents.Chip.Choice"
+                       app:chipStrokeWidth="1dp"
+
+                       ></com.google.android.material.chip.Chip>
+
+               </com.google.android.material.chip.ChipGroup>
+           </LinearLayout>
+       </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/broadcast_box_2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
-            app:layout_constraintVertical_bias="0.131">
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/allerta"
-                android:text="Choose your Recepient"
-                android:textAlignment="center"
-                android:textColor="#ffffff"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.07">
-
-            </TextView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/manager"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:checkable="true"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardBackgroundColor="#2A2D36"
-                app:cardElevation="0dp"
-                app:checkedIconTint="#ffffff"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.25"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"
-                app:layout_constraintVertical_bias="0.1">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="105dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/ic_employee" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/jacques_francois"
-                        android:text="Manager"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp">
-
-                    </TextView>
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mechanic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:checkable="true"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardBackgroundColor="#2A2D36"
-                app:cardElevation="0dp"
-                app:checkedIconTint="#ffffff"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.75"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"
-                app:layout_constraintVertical_bias="0.1">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="105dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/ic_mechanic1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/jacques_francois"
-                        android:text="Mechanic"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp">
-
-                    </TextView>
-                </LinearLayout>
-
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/jacques_francois"
-                android:text="Your Message Please"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mechanic"
-                app:layout_constraintVertical_bias="0">
-
-            </TextView>
-
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputSubject"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="5dp"
-                android:textColorHint="#FFFFFF"
-                app:boxStrokeColor="#FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView7"
-                app:layout_constraintVertical_bias="0.0">
-
+                android:layout_height="70dp"
+                app:boxStrokeColor="#000"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeWidth="1dp"
+                >
                 <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
                     android:id="@+id/subject"
-                    style="@style/modifiedEditText"
+                    android:layout_margin="20dp"
+                    android:gravity="start"
                     android:hint="Subject"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:textColor="#FFFFFF" />
+                    android:fontFamily="@font/imprima"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputMessage"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginBottom="5dp"
-                android:textColorHint="#ffffff"
-                app:boxStrokeColor="#ffffff"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.238"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputSubject"
-                app:layout_constraintVertical_bias="0.131">
-
+                android:layout_height="150dp"
+                app:boxStrokeColor="#000"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeWidth="1dp"
+                >
                 <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
                     android:id="@+id/message"
-                    style="@style/modifiedEditText"
-                    android:layout_height="85dp"
                     android:gravity="start"
+                    android:padding="10dp"
+                    android:layout_margin="20dp"
                     android:hint="Message"
-                    android:inputType="textMultiLine"
-                    android:textColor="#FFFFFF" />
+                    android:fontFamily="@font/imprima"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="120dp"
-            android:layout_height="140dp"
-            android:scaleX="2.5"
-            android:scaleY="2.5"
-
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout4"
-            app:layout_constraintVertical_bias="0.1" />
-
-
-        <Button
-            android:id="@+id/send"
-            android:layout_width="match_parent"
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="100dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="25dp"
-            android:backgroundTint="#0289CD"
+            android:backgroundTint="#f03d5f"
+            android:layout_marginTop="20dp"
+            android:id="@+id/send"
             android:text="Send"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"></Button>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:fontFamily="@font/imprima"
+            android:padding="10dp"
+            app:icon="@drawable/ic_send"
+            app:iconTint="#FFf"
+            android:layout_gravity="center"
+            />
+    </LinearLayout>
 </ScrollView>
