@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.badoualy.stepperindicator.StepperIndicator;
 import com.example.adminapp.R;
+import com.example.adminapp.dialogbox.GenerateQRDialogBox;
 import com.example.adminapp.fragments.FormFragment1;
 import com.example.adminapp.fragments.FormFragment2;
 import com.example.adminapp.fragments.FormFragment3;
@@ -349,8 +350,8 @@ public class GenerateQRActivity extends AppCompatActivity {
                                             BitMatrix bitMatrix = multiFormatWriter.encode(String.valueOf(generationCodeValue), BarcodeFormat.QR_CODE, 200, 200);
                                             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                                             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);// bitmap contains QRCode image.
-                                            //final BottomSheetDialog bottomSheet = new BottomSheetDialog(generationCodeValue, bitmap);
-                                            //bottomSheet.show(getSupportFragmentManager(), bottomSheet.getTag());
+                                            GenerateQRDialogBox generateQRDialogBox = new GenerateQRDialogBox(GenerateQRActivity.this,generationCodeValue,bitmap);
+                                            generateQRDialogBox.show();
 
                                             //qrcode.setImageBitmap(bitmap);
 
