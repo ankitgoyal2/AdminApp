@@ -6,19 +6,25 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.adminapp.AddEmployeeActivity;
 import com.example.adminapp.BroadcastActivity;
 import com.example.adminapp.GenerateQRActivity;
+import com.example.adminapp.ManagerListActivity;
+import com.example.adminapp.MechanicListActivity;
 import com.example.adminapp.R;
 import com.example.adminapp.UsersActivity;
 import com.example.adminapp.ZoomCenterCardLayoutManager;
@@ -37,12 +43,10 @@ import com.smarteist.autoimageslider.SliderView;
 
 public class HomeFragment extends Fragment {
 
-
-
-
     Activity activity;
     FirebaseDatabase firebaseDatabase;
     ZoomCenterCardLayoutManager HorizontalLayout,Horizontallayout1;
+    LinearLayout linearLayout1,linearLayout2;
 
     public HomeFragment() {
         activity = getActivity();
@@ -54,9 +58,22 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_home, container, false);
+        final View view= inflater.inflate(R.layout.fragment_home, container, false);
         activity = getActivity();
 
+        final Toolbar toolbar=view.findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayUseLogoEnabled(true);
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setLogo(R.drawable.ic_home_toolbar);
+        toolbar.setTitleTextAppearance(getActivity(),R.style.TitleTextAppearance);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                view.findViewById(R.id.horizontal_progress_bar).setVisibility(View.GONE);
+            }
+        },4000);
         ImageView generateQr = view.findViewById(R.id.generate_qr);
         ImageView addEmployee = view.findViewById(R.id.add_employee);
         ImageView broadcast = view.findViewById(R.id.broadcast);
@@ -141,6 +158,24 @@ public class HomeFragment extends Fragment {
         ManagerHomepageListAdapter managerHomepageListAdapter = new ManagerHomepageListAdapter(options1,getActivity().getApplicationContext());
         recyclerView_manager.setAdapter(managerHomepageListAdapter);
         managerHomepageListAdapter.startListening();
+
+        linearLayout1 = view.findViewById(R.id.view_list_manager);
+        linearLayout1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), ManagerListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        linearLayout2 = view.findViewById(R.id.view_list_mechanic);
+        linearLayout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), MechanicListActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
