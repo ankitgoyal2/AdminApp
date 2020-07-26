@@ -111,6 +111,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="Manager"
+                       app:chipCornerRadius="4dp"
                        style="@style/My_Widget.MaterialComponents.Chip.Choice"
 
                        app:chipStrokeWidth="1dp"
@@ -122,6 +123,7 @@
                        android:layout_height="wrap_content"
                        android:layout_marginLeft="20dp"
                        android:text="Mechanic"
+                       app:chipCornerRadius="4dp"
                        style="@style/My_Widget.MaterialComponents.Chip.Choice"
                        app:chipStrokeWidth="1dp"
 
@@ -132,6 +134,7 @@
                        android:layout_height="wrap_content"
                        android:layout_marginLeft="20dp"
                        android:text="All Users"
+                       app:chipCornerRadius="4dp"
                        style="@style/My_Widget.MaterialComponents.Chip.Choice"
                        app:chipStrokeWidth="1dp"
 

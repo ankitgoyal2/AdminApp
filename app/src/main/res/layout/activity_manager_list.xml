@@ -26,7 +26,7 @@
                 app:titleTextColor="#000"
                 android:elevation="5dp"
                 android:background="#ECE6E6"
-                app:titleMarginStart="30dp"
+                app:titleMarginStart="15dp"
                 />
             <me.zhanghai.android.materialprogressbar.MaterialProgressBar
                 android:layout_width="match_parent"

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -26,21 +28,33 @@ import com.google.firebase.database.DataSnapshot;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ManagerHomepageListAdapter extends FirebaseRecyclerPagingAdapter<Manager,ManagerHomepageListAdapter.MyHolder> {
+public class ManagerHomepageListAdapter extends FirebaseRecyclerPagingAdapter<Manager,ManagerHomepageListAdapter.MyHolder> implements Filterable {
     Context c;
+    private final List<Manager> userList;
 
+    private final List<Manager> filteredUserList;
+
+    private UserFilter userFilter;
 
     public ManagerHomepageListAdapter(@NonNull DatabasePagingOptions<Manager> options, Context c) {
         super(options);
         this.c = c;
+        this.userList =new ArrayList<>();
+        this.filteredUserList = new ArrayList<>();
     }
 
 
 
     @Override
     protected void onBindViewHolder(@NonNull MyHolder viewHolder, int position, @NonNull Manager model) {
+        userList.add(model);
         viewHolder.bind(model);
     }
 
@@ -55,6 +69,56 @@ public class ManagerHomepageListAdapter extends FirebaseRecyclerPagingAdapter<Ma
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.manager_list_item, null);
         return new ManagerHomepageListAdapter.MyHolder(view);
     }
+
+    public Filter getFilter() {
+        if(userFilter == null)
+            userFilter = new UserFilter(this, userList);
+        return userFilter;
+    }
+    private static class UserFilter extends Filter {
+
+        private final ManagerHomepageListAdapter adapter;
+
+        private final List<Manager> originalList;
+
+        private final List<Manager> filteredList;
+
+        private UserFilter(ManagerHomepageListAdapter adapter, List<Manager> originalList) {
+            super();
+            this.adapter = adapter;
+            this.originalList = new ArrayList<>(originalList);
+            this.filteredList = new ArrayList<>();
+        }
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            filteredList.clear();
+            final FilterResults results = new FilterResults();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(originalList);
+            } else {
+                final String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (final Manager user : originalList) {
+                    if (user.getUserName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(user);
+                    }
+                }
+            }
+            results.values = filteredList;
+            results.count = filteredList.size();
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            adapter.filteredUserList.clear();
+            adapter.filteredUserList.addAll((Collection<? extends Manager>) results.values);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
 
     public class MyHolder extends RecyclerView.ViewHolder {
         CardView cardView;

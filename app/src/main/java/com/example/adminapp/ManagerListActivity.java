@@ -1,6 +1,7 @@
 package com.example.adminapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.adminapp.adapters.ManagerHomepageListAdapter;
@@ -20,6 +23,7 @@ import java.util.concurrent.atomic.AtomicMarkableReference;
 
 public class ManagerListActivity extends AppCompatActivity {
 
+    ManagerHomepageListAdapter managerHomepageListAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +55,7 @@ public class ManagerListActivity extends AppCompatActivity {
                 .setLifecycleOwner(this)
                 .setQuery(baseQuery1,config1,Manager.class)
                 .build();
-        ManagerHomepageListAdapter managerHomepageListAdapter = new ManagerHomepageListAdapter(options1,this);
+       managerHomepageListAdapter = new ManagerHomepageListAdapter(options1,this);
         recyclerView.setAdapter(managerHomepageListAdapter);
         managerHomepageListAdapter.startListening();
     }
@@ -60,4 +64,23 @@ public class ManagerListActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                managerHomepageListAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
 }
