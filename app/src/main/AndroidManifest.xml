@@ -16,7 +16,8 @@
         <activity android:name=".GenerateQRActivity" />
         <activity android:name=".AddEmployeeActivity" />
         <activity android:name=".BroadcastActivity" />
-        <activity android:name=".BottomNavigationActivity">
+        <activity android:name=".BottomNavigationActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

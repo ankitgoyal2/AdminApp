@@ -28,4 +28,6 @@
     <color name="list_color_9">#DDF9C1</color>
     <color name="list_color_10">#E6BCDD</color>
     <color name="list_color_11">#DBFAFA</color>
+
+    <color name="whiteTextColor">#FFFFFF</color>
 </resources>
