@@ -71,7 +71,7 @@ public class MechanicBasicAdapter extends RecyclerView.Adapter<MechanicBasicAdap
 
             if(constraint==null||constraint.length()==0)
             {
-                filteredList.addAll(userList);
+                filteredList.addAll(userListFull);
             }
             else
             {

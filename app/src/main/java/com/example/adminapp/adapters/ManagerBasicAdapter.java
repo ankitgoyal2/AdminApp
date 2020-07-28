@@ -68,7 +68,7 @@ public class ManagerBasicAdapter extends RecyclerView.Adapter<ManagerBasicAdapte
 
             if(constraint==null||constraint.length()==0)
             {
-                filteredList.addAll(userList);
+                filteredList.addAll(userListFull);
             }
             else
             {

@@ -1,12 +1,18 @@
 package com.example.adminapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,7 +39,17 @@ public class ManagerProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_profile);
-
+        Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setTitleTextAppearance(this,R.style.TitleTextAppearance);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                findViewById(R.id.horizontal_progress_bar).setVisibility(View.GONE);
+            }
+        },4000);
         profilepic = findViewById(R.id.circleImageView);
         managerName = findViewById(R.id.manager_name);
         managerEmail = findViewById(R.id.manager_email);
@@ -74,5 +90,14 @@ public class ManagerProfileActivity extends AppCompatActivity {
         recyclerView_machine.setAdapter(machineAdapter);
         machineAdapter.startListening();
 
+    }
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.profile_menu,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
