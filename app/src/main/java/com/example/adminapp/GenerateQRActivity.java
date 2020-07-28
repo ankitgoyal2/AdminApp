@@ -64,13 +64,14 @@ public class GenerateQRActivity extends AppCompatActivity {
     TextView installationDate;
 
     long generationCodeValue = 0;
+    long totalMachines;
 
     String[] descriptionData = {"Basic\nDetails", "Specific\nDetails", "Commercial\nDetails"};
     private int count = 1;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference generationCodeReference, machineReference, managerListReference, managerReference;
+    DatabaseReference generationCodeReference, machineReference, managerListReference, managerReference, totalMachineReference;
 
     FirebaseStorage firebaseStorage;
     StorageReference storageReference;
@@ -104,6 +105,7 @@ public class GenerateQRActivity extends AppCompatActivity {
         generationCodeReference = firebaseDatabase.getReference("GenerationCode");
         machineReference = firebaseDatabase.getReference("Machines");
         managerListReference = firebaseDatabase.getReference("Users").child("Manager");
+        totalMachineReference = firebaseDatabase.getReference("TotalMachines");
 
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
@@ -114,6 +116,18 @@ public class GenerateQRActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 generationCodeValue = (long) Objects.requireNonNull(dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        totalMachineReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                totalMachines = (long) dataSnapshot.getValue();
             }
 
             @Override
@@ -582,6 +596,8 @@ public class GenerateQRActivity extends AppCompatActivity {
                                 Toast.makeText(GenerateQRActivity.this, "File Updated", Toast.LENGTH_SHORT).show();
                                 generationCodeValue = generationCodeValue+1; // increase Value of generationCode Everytime a new machine is entered.
                                 generationCodeReference.setValue(generationCodeValue);
+                                totalMachines = totalMachines+1;
+                                totalMachineReference.setValue(totalMachines);
                             }
                         }
                     });
