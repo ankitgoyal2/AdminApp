@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.adminapp.fragments.HomeFragment;
 import com.example.adminapp.fragments.ProfileFragment;
+import com.example.adminapp.fragments.VerifyAccountsFragment;
 
 public class BottomNavigationActivity extends AppCompatActivity {
 
@@ -23,9 +24,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         MeowBottomNavigation bottomNavigation = findViewById(R.id.bottom_bar);
         bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_account));
-
-
-
+        bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_account));
 
         bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
@@ -39,6 +38,11 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
                     case 2:
                         setOurFragment(new ProfileFragment(),old_id,2);
+                        old_id = 2;
+                        break;
+
+                    case 3:
+                        setOurFragment(new VerifyAccountsFragment(),old_id,3);
                         old_id = 2;
                 }
 
