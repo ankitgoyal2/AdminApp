@@ -10,6 +10,7 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.adminapp.fragments.HomeFragment;
 import com.example.adminapp.fragments.ProfileFragment;
 import com.example.adminapp.fragments.VerifyManagerAccountsFragment;
+import com.example.adminapp.utility.SendMail;
 
 public class BottomNavigationActivity extends AppCompatActivity {
 
@@ -23,7 +24,9 @@ public class BottomNavigationActivity extends AppCompatActivity {
         MeowBottomNavigation bottomNavigation = findViewById(R.id.bottom_bar);
         bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_account));
-        bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_account));
+
+
+
 
         bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
@@ -37,11 +40,6 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
                     case 2:
                         setOurFragment(new ProfileFragment(),old_id,2);
-                        old_id = 2;
-                        break;
-
-                    case 3:
-                        setOurFragment(new VerifyManagerAccountsFragment(),old_id,3);
                         old_id = 2;
                 }
 
@@ -79,5 +77,18 @@ public class BottomNavigationActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.commit();
     }
+
+//    private void sendEmail() {
+//        //Getting content for email
+//        String email = "sudhanshu10101999@gmail.com";
+//        String subject = "Testing";
+//        String message = "done";
+//
+//        //Creating SendMail object
+//        SendMail sm = new SendMail(this, email, subject, message);
+//
+//        //Executing sendmail to send email
+//        sm.execute();
+//    }
 
 }
