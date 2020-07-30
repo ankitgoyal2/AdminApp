@@ -8,11 +8,12 @@ import java.util.HashMap;
 public class Mechanic implements Cloneable{
 
     private String userName, email, profilePicLink, uid;
-    private int load = 0,numberOfRating;
+    private int load = 0,numberOfRating=0;
     private float overallRating=0;
-    private HashMap<String,Float> rating;
+    private HashMap<String, MechRating> ratings;
     private HashMap<String,Complaint> pendingComplaints, completedComplaints;
     private HashMap<String,Request> pendingRequest, completedRequest;
+    private String phone, password, empId, Department, Designation, idCardLink;
 
     public Object clone() throws
             CloneNotSupportedException
@@ -23,19 +24,25 @@ public class Mechanic implements Cloneable{
     public Mechanic() {
     }
 
-    public Mechanic(String userName, String email, String profilePicLink, int load, int numberOfRating, float overallRating, HashMap<String, Float> rating, HashMap<String, Complaint> pendingComplaints, HashMap<String, Complaint> completedComplaints, HashMap<String, Request> pendingRequest, HashMap<String, Request> completedRequest, String uid) {
+    public Mechanic(String userName, String email, String profilePicLink, String uid, int load, int numberOfRating, float overallRating, HashMap<String, MechRating> ratings, HashMap<String, Complaint> pendingComplaints, HashMap<String, Complaint> completedComplaints, HashMap<String, Request> pendingRequest, HashMap<String, Request> completedRequest, String phone, String password, String empId, String department, String designation, String idCardLink) {
         this.userName = userName;
         this.email = email;
         this.profilePicLink = profilePicLink;
+        this.uid = uid;
         this.load = load;
         this.numberOfRating = numberOfRating;
         this.overallRating = overallRating;
-        this.rating = rating;
+        this.ratings = ratings;
         this.pendingComplaints = pendingComplaints;
         this.completedComplaints = completedComplaints;
         this.pendingRequest = pendingRequest;
         this.completedRequest = completedRequest;
-        this.uid = uid;
+        this.phone = phone;
+        this.password = password;
+        this.empId = empId;
+        Department = department;
+        Designation = designation;
+        this.idCardLink = idCardLink;
     }
 
     public String getUserName() {
@@ -86,12 +93,12 @@ public class Mechanic implements Cloneable{
         this.overallRating = overallRating;
     }
 
-    public HashMap<String, Float> getRating() {
-        return rating;
+    public HashMap<String, MechRating> getRating() {
+        return ratings;
     }
 
-    public void setRating(HashMap<String, Float> rating) {
-        this.rating = rating;
+    public void setRating(HashMap<String, MechRating> ratings) {
+        this.ratings = ratings;
     }
 
     public HashMap<String, Complaint> getPendingComplaints() {
@@ -132,5 +139,61 @@ public class Mechanic implements Cloneable{
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public HashMap<String, MechRating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(HashMap<String, MechRating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(String empId) {
+        this.empId = empId;
+    }
+
+    public String getDepartment() {
+        return Department;
+    }
+
+    public void setDepartment(String department) {
+        Department = department;
+    }
+
+    public String getDesignation() {
+        return Designation;
+    }
+
+    public void setDesignation(String designation) {
+        Designation = designation;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getIdCardLink() {
+        return idCardLink;
+    }
+
+    public void setIdCardLink(String idCardLink) {
+        this.idCardLink = idCardLink;
     }
 }
