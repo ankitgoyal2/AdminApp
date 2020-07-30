@@ -124,7 +124,9 @@ public class ManagerVerificationRequestAdapter extends FirebaseRecyclerPagingAda
 
                             if (task.isSuccessful()) {
                                 final FirebaseUser[] user = {auth.getCurrentUser()};
-                                final DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("Users");
+                                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                                final DatabaseReference userReference = firebaseDatabase.getReference("Users");
+                                final DatabaseReference userReference1 = firebaseDatabase.getReference("UnverifiedAccounts");
 
 
                                 HashMap<String, String> data = new HashMap<>();
@@ -152,6 +154,7 @@ public class ManagerVerificationRequestAdapter extends FirebaseRecyclerPagingAda
                                                         e.printStackTrace();
                                                     }
                                                     sendEmail(email,manager.getUserName());
+                                                    userReference1.child("Manager").child(manager.getEmpId()).setValue(null);
                                                     SweetToast.success(c, "SuccesFully Registered");
 
                                                 } else {

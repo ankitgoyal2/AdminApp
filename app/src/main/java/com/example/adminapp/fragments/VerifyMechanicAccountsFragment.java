@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 
 import com.example.adminapp.R;
 import com.example.adminapp.adapters.ManagerVerificationRequestAdapter;
+import com.example.adminapp.adapters.MechanicVerificationRequestAdapter;
 import com.example.adminapp.models.Manager;
+import com.example.adminapp.models.Mechanic;
 import com.firebase.ui.database.paging.DatabasePagingOptions;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -82,12 +84,12 @@ public class VerifyMechanicAccountsFragment extends Fragment {
                 .setPageSize(20)
                 .build();
 
-        DatabasePagingOptions<Manager> options = new DatabasePagingOptions.Builder<Manager>()
+        DatabasePagingOptions<Mechanic> options = new DatabasePagingOptions.Builder<Mechanic>()
                 .setLifecycleOwner(this)
-                .setQuery(baseQuery,config,Manager.class)
+                .setQuery(baseQuery,config,Mechanic.class)
                 .build();
 
-        ManagerVerificationRequestAdapter adapter = new ManagerVerificationRequestAdapter(options,getActivity());
+        MechanicVerificationRequestAdapter adapter = new MechanicVerificationRequestAdapter(options,getActivity());
         recyclerView.setAdapter(adapter);
         adapter.startListening();
 
