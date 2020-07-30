@@ -1,5 +1,6 @@
 package com.example.adminapp.adapters;
 
+import android.accounts.Account;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.adminapp.R;
 import com.example.adminapp.models.Manager;
 import com.example.adminapp.utility.CaesarCipherUtil;
+import com.example.adminapp.utility.SendMail;
 import com.firebase.ui.database.paging.DatabasePagingOptions;
 import com.firebase.ui.database.paging.FirebaseRecyclerPagingAdapter;
 import com.firebase.ui.database.paging.LoadingState;
@@ -149,7 +151,7 @@ public class ManagerVerificationRequestAdapter extends FirebaseRecyclerPagingAda
                                                     } catch (Exception e) {
                                                         e.printStackTrace();
                                                     }
-
+                                                    sendEmail(email,manager.getUserName());
                                                     SweetToast.success(c, "SuccesFully Registered");
 
                                                 } else {
@@ -201,5 +203,17 @@ public class ManagerVerificationRequestAdapter extends FirebaseRecyclerPagingAda
                 Log.i("Error", e.getMessage());
             }
         }
+
+        private void sendEmail(String email,String name) {
+        //Getting content for email
+        String subject = "Account Verification";
+        String message = "Congratulations " + name+ ", \n Your Account has been verified by Admin . Now you use user credentials to log in the app.";
+
+        //Creating SendMail object
+        SendMail sm = new SendMail(c, email, subject, message);
+
+        //Executing sendmail to send email
+        sm.execute();
+    }
     }
 }
