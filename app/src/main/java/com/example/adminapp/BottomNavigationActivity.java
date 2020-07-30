@@ -5,11 +5,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.adminapp.fragments.HomeFragment;
 import com.example.adminapp.fragments.ProfileFragment;
+import com.example.adminapp.fragments.VerifyManagerAccountsFragment;
+import com.example.adminapp.utility.SendMail;
 
 public class BottomNavigationActivity extends AppCompatActivity {
 
@@ -76,5 +77,18 @@ public class BottomNavigationActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.commit();
     }
+
+//    private void sendEmail() {
+//        //Getting content for email
+//        String email = "sudhanshu10101999@gmail.com";
+//        String subject = "Testing";
+//        String message = "done";
+//
+//        //Creating SendMail object
+//        SendMail sm = new SendMail(this, email, subject, message);
+//
+//        //Executing sendmail to send email
+//        sm.execute();
+//    }
 
 }

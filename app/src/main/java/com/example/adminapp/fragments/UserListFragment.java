@@ -48,10 +48,8 @@ public class UserListFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setReverseLayout(true);
-        layoutManager.setStackFromEnd(true);
+
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new OverlapDecoration());
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
