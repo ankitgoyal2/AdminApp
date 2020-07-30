@@ -241,6 +241,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
            <ImageView
+               android:id="@+id/id_card_pic"
                android:layout_width="match_parent"
                android:layout_height="400dp">
 

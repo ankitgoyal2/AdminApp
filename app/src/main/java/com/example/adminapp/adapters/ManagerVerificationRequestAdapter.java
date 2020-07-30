@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,6 +40,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
@@ -86,6 +88,7 @@ public class ManagerVerificationRequestAdapter extends FirebaseRecyclerPagingAda
         TextView name, phoneNumber, email, address, empId, department, designation;
         CardView cardView;
         Button accept, decline;
+        ImageView idCardPic;
 
         public RequestHolder(@NonNull View itemView) {
             super(itemView);
@@ -100,6 +103,7 @@ public class ManagerVerificationRequestAdapter extends FirebaseRecyclerPagingAda
             cardView = itemView.findViewById(R.id.cardview);
             accept = itemView.findViewById(R.id.accept_button);
             decline = itemView.findViewById(R.id.decline_button);
+            idCardPic = itemView.findViewById(R.id.id_card_pic);
         }
 
         public void bind(final Manager manager) {
@@ -110,6 +114,7 @@ public class ManagerVerificationRequestAdapter extends FirebaseRecyclerPagingAda
             empId.setText(manager.getEmpId());
             department.setText(manager.getDepartment());
             designation.setText(manager.getDesignation());
+            Picasso.get().load(manager.getIdCardLink()).into(idCardPic);
 
             accept.setOnClickListener(new View.OnClickListener() {
                 @Override

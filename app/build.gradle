@@ -84,4 +84,7 @@ dependencies {
 
     //sweet toast
     implementation 'com.github.TheHasnatBD:SweetToast:1.0.2'
+
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
