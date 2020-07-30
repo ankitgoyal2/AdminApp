@@ -82,7 +82,7 @@ public class BroadcastActivity extends AppCompatActivity {
             }
         });
         final Chip all = findViewById(R.id.all_chip);
-        mechanic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        all.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
