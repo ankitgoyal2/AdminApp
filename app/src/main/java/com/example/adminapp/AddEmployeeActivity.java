@@ -3,19 +3,23 @@ package com.example.adminapp;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.adminapp.adapters.TabAdapter;
 import com.example.adminapp.models.Manager;
 import com.example.adminapp.utility.CaesarCipherUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,98 +43,55 @@ public class AddEmployeeActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser user;
 
+    TabLayout tabLayout;
+    ViewPager viewPager;
+    ImageView backButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_employee);
+        setContentView(R.layout.activity_add_employee_tab);
 
-        auth = FirebaseAuth.getInstance();
+        tabLayout = (TabLayout) findViewById(R.id.r_tabLayout);
+        viewPager = (ViewPager) findViewById(R.id.r_viewpager);
+        tabLayout.addTab(tabLayout.newTab().setText("Manager"));
+        tabLayout.addTab(tabLayout.newTab().setText("Mechanic"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        final FirebaseFunctions firebaseFunctions = FirebaseFunctions.getInstance();
-        final String userName = "Sudhanshu Gupta",
-                phoneNumber = "8813880964",
-                email = "manager9@gmail.com",
-                address = "haryana",
-                password = "123456";
-
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    user = auth.getCurrentUser();
-                    final DatabaseReference userReference = firebaseDatabase.getReference("Users");
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        final TabAdapter rTabAdapter = new TabAdapter(this, getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(rTabAdapter);
 
-                    HashMap<String, String> data = new HashMap<>();
-                    data.put("claim", "manager");
-                    data.put("email", user.getEmail());
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-                    firebaseFunctions.getHttpsCallable("setCustomClaim").
-                            call(data)
-                            .addOnSuccessListener(new OnSuccessListener<HttpsCallableResult>() {
-                                @RequiresApi(api = Build.VERSION_CODES.O)
-                                @Override
-                                public void onSuccess(HttpsCallableResult httpsCallableResult) {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
 
-                                    HashMap<String, String> hashMap = (HashMap<String, String>) httpsCallableResult.getData();
-                                    if (hashMap.get("status").equals("Successful")) {
-                                        Manager manager = new Manager();
-                                        manager.setEmail(email);
-                                        manager.setUserName(userName);
-                                        manager.setUid(user.getUid());
-                                        manager.setPhoneNumber(phoneNumber);
-                                        manager.setSavedAddress(address);
-                                        userReference.child("Manager").child(user.getUid()).setValue(manager);
-                                        String plainText = email + "-" + password;
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
 
-                                        try {
-                                            generateBarCode(plainText);
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                        }
+            }
 
-
-                                    } else {
-                                        user.delete();
-                                        Toast.makeText(AddEmployeeActivity.this, "Some Error Occured \n Please try again", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-
-                }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
-
     }
 
-
-    void generateBarCode(String plainText) throws Exception {
-        try {
-
-            String encryptedString = CaesarCipherUtil.encode(plainText);
-            Log.i("sudahanshu encrypted",encryptedString);
-
-            MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-            BitMatrix bitMatrix = multiFormatWriter.encode(encryptedString, BarcodeFormat.CODE_128, 200, 200);
-            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-
-            ImageView barcode = findViewById(R.id.barcode);
-
-            barcode.setImageBitmap(bitmap);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            byte[] data = baos.toByteArray();
-
-            StorageReference storageReference = FirebaseStorage.getInstance().getReference("/barcode/" + user.getUid() + ".jpg");
-
-            UploadTask uploadTask = storageReference.putBytes(data);
-
-        } catch (Exception e) {
-            Log.i("Error", e.getMessage());
-        }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
-
 
 }

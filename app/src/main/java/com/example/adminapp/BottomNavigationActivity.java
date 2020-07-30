@@ -5,12 +5,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.adminapp.fragments.HomeFragment;
 import com.example.adminapp.fragments.ProfileFragment;
-import com.example.adminapp.fragments.VerifyAccountsFragment;
+import com.example.adminapp.fragments.VerifyManagerAccountsFragment;
 
 public class BottomNavigationActivity extends AppCompatActivity {
 
@@ -42,7 +41,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
                         break;
 
                     case 3:
-                        setOurFragment(new VerifyAccountsFragment(),old_id,3);
+                        setOurFragment(new VerifyManagerAccountsFragment(),old_id,3);
                         old_id = 2;
                 }
 
