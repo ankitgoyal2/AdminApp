@@ -150,6 +150,7 @@ public class ManagerVerificationRequestAdapter extends FirebaseRecyclerPagingAda
                                                 HashMap<String, String> hashMap = (HashMap<String, String>) httpsCallableResult.getData();
                                                 if (hashMap.get("status").equals("Successful")) {
 
+                                                    manager.setUid(user[0].getUid());
                                                     userReference.child("Manager").child(user[0].getUid()).setValue(manager);
                                                     String plainText = email + "-" + password;
 
@@ -181,6 +182,9 @@ public class ManagerVerificationRequestAdapter extends FirebaseRecyclerPagingAda
                 @Override
                 public void onClick(View v) {
 
+                    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                    final DatabaseReference userReference1 = firebaseDatabase.getReference("UnverifiedAccounts");
+                    userReference1.child("Manager").child(manager.getEmpId()).setValue(null);
                 }
             });
         }
