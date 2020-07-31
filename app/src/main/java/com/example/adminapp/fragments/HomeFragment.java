@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -19,6 +20,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.adminapp.AddEmployeeActivity;
 import com.example.adminapp.BroadcastActivity;
@@ -35,8 +38,12 @@ import com.example.adminapp.adapters.ViewPagerAdapter;
 import com.example.adminapp.models.Manager;
 import com.example.adminapp.models.Mechanic;
 import com.firebase.ui.database.paging.DatabasePagingOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -48,6 +55,13 @@ public class HomeFragment extends Fragment {
     FirebaseDatabase firebaseDatabase;
     ZoomCenterCardLayoutManager HorizontalLayout,Horizontallayout1;
     LinearLayout linearLayout1,linearLayout2,stockrecord;
+    TextView total, working;
+    long total_machine, faulted;
+    ProgressBar progress;
+    int percentage;
+
+
+    DatabaseReference totalMachineReference, faultMachineReference;
 
     public HomeFragment() {
         activity = getActivity();
@@ -75,10 +89,53 @@ public class HomeFragment extends Fragment {
                 view.findViewById(R.id.horizontal_progress_bar).setVisibility(View.GONE);
             }
         },4000);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        totalMachineReference = firebaseDatabase.getReference("TotalMachines");
+        faultMachineReference = firebaseDatabase.getReference("FaultMachines");
+
+        totalMachineReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                total_machine = (long) dataSnapshot.getValue();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        faultMachineReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                faulted = (long) dataSnapshot.getValue();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         ImageView generateQr = view.findViewById(R.id.generate_qr);
         ImageView addEmployee = view.findViewById(R.id.add_employee);
         ImageView broadcast = view.findViewById(R.id.broadcast);
         stockrecord = view.findViewById(R.id.stock_record_ll);
+        total = view.findViewById(R.id.total_machine);
+        working = view.findViewById(R.id.working);
+        progress = view.findViewById(R.id.progress_bar_1);
+
+        if(total_machine!=0) {
+            percentage = (int) ((total_machine - faulted) / total_machine) * 100;
+        }
+        else
+        {
+            percentage = 50;
+        }
+
+        total.setText(String.valueOf(total_machine));
+        working.setText(String.valueOf(total_machine-faulted));
+        progress.setProgress(percentage);
 
         stockrecord.setOnClickListener(new View.OnClickListener() {
             @Override

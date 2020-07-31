@@ -230,6 +230,7 @@
                                 android:layout_marginTop="8dp"
                                 ></TextView>
                             <TextView
+                                android:id="@+id/total_machine"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
@@ -256,6 +257,7 @@
                             app:progressColor="#03A9F4"/>
 
                         <TextView
+                            android:id="@+id/working"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"

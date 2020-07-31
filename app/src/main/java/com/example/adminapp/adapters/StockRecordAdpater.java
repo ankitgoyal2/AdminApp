@@ -36,9 +36,6 @@ public class StockRecordAdpater extends FirebaseRecyclerPagingAdapter<Machine, S
     protected void onBindViewHolder(@NonNull MyMachinesHolder viewHolder, int position, @NonNull Machine model) {
         int bgColor = ContextCompat.getColor(c, mColors[position % 10]);
         viewHolder.cardView.setCardBackgroundColor(bgColor);
-        if(position % 2 ==0){
-            viewHolder.workingStatus.setBackgroundResource(R.drawable.not_working_background);
-        }
         viewHolder.bind(model);
     }
 
@@ -77,6 +74,11 @@ public class StockRecordAdpater extends FirebaseRecyclerPagingAdapter<Machine, S
             location.setText(model.getDepartment());
             type.setText(model.getType());
             serialNumber.setText(model.getSerialNumber());
+
+            if(!model.isWorking())
+            {
+                workingStatus.setBackgroundResource(R.drawable.not_working_background);
+            }
         }
     }
 }
