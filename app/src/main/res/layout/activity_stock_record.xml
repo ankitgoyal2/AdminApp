@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".StockRecordActivity">
-
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -24,6 +23,7 @@
                 android:id="@+id/toolbar"
                 android:layout_alignParentTop="true"
                 app:titleTextColor="#000"
+                app:menu="@menu/toolbar_menu"
                 android:elevation="5dp"
                 android:background="#ECE6E6"
                 app:titleMarginStart="15dp"
@@ -41,19 +41,25 @@
 
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_height="match_parent"
+        android:background="#E4E6E3"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/stock_list_rv"
+            android:layout_marginTop="60dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </ScrollView>
+
+        <com.yalantis.filter.widget.Filter
+            android:id="@+id/filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
 
 
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
