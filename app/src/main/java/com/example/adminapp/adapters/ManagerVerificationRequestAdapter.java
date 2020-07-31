@@ -181,6 +181,9 @@ public class ManagerVerificationRequestAdapter extends FirebaseRecyclerPagingAda
                 @Override
                 public void onClick(View v) {
 
+                    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                    final DatabaseReference userReference1 = firebaseDatabase.getReference("UnverifiedAccounts");
+                    userReference1.child("Manager").child(manager.getEmpId()).setValue(null);
                 }
             });
         }

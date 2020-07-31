@@ -174,6 +174,9 @@ public class MechanicVerificationRequestAdapter extends FirebaseRecyclerPagingAd
                 @Override
                 public void onClick(View v) {
 
+                    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                    final DatabaseReference userReference1 = firebaseDatabase.getReference("UnverifiedAccounts");
+                    userReference1.child("Mechanic").child(mechanic.getEmpId()).setValue(null);
                 }
             });
         }
