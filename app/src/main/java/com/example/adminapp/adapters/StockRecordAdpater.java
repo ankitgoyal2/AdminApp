@@ -32,6 +32,7 @@ public class StockRecordAdpater extends RecyclerView.Adapter<StockRecordAdpater.
     private final int[] mColors = {R.color.list_color_2,R.color.list_color_3,R.color.list_color_4,R.color.list_color_5,
             R.color.list_color_6,R.color.list_color_7,R.color.list_color_8,R.color.list_color_9,R.color.list_color_10,R.color.list_color_11};
 
+
     public StockRecordAdpater(List<Machine>machineList , Context c) {
        this.machineList = machineList;
         this.c = c;
@@ -53,9 +54,6 @@ public class StockRecordAdpater extends RecyclerView.Adapter<StockRecordAdpater.
     public void onBindViewHolder(@NonNull MyMachinesHolder holder, int position) {
         int bgColor = ContextCompat.getColor(c, mColors[position % 10]);
         holder.cardView.setCardBackgroundColor(bgColor);
-        if(position % 2 ==0){
-            holder.workingStatus.setBackgroundResource(R.drawable.not_working_background);
-        }
         holder.bind(machineList.get(position));
     }
 
@@ -63,10 +61,16 @@ public class StockRecordAdpater extends RecyclerView.Adapter<StockRecordAdpater.
     public int getItemCount() {
         return machineList.size();
     }
+
+    public List<Machine> getMachine(){ return machineList;}
+
     public void setMachine(List<Machine> machines){
         this.machineList = machines;
     }
 
+    public void setMachineAll(){ this.machineList = machineListFull;}
+
+    public List<Machine> getMachineListFull(){ return machineListFull;}
     @Override
     public Filter getFilter() {
         return filter;
@@ -89,8 +93,16 @@ public class StockRecordAdpater extends RecyclerView.Adapter<StockRecordAdpater.
 
                 for(Machine m : machineListFull)
                 {
-                    if(m.getType().toLowerCase().contains(filterPattern))
+                    if(m.getType().toLowerCase().contains(filterPattern)) {
                         filteredList.add(m);
+                    }else if(m.getSerialNumber().toLowerCase().contains(filterPattern)){
+                        filteredList.add(m);
+                    }else if(m.getMachineId().toLowerCase().contains(filterPattern)){
+                        filteredList.add(m);
+                    }else if(m.getDepartment().toLowerCase().contains(filterPattern)){
+                        filteredList.add(m);
+                    }
+
                 }
             }
 
@@ -130,6 +142,13 @@ public class StockRecordAdpater extends RecyclerView.Adapter<StockRecordAdpater.
             location.setText(model.getDepartment());
             type.setText(model.getType());
             serialNumber.setText(model.getSerialNumber());
+            if(model.isWorking()){
+                workingStatus.setBackgroundResource(R.drawable.working_tv_background);
+                workingStatus.setText("WORKING");
+            }else{
+                workingStatus.setBackgroundResource(R.drawable.not_working_background);
+                workingStatus.setText("NOT WORKING");
+            }
         }
     }
 }

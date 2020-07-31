@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.paging.PagedList;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,9 +31,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.yalantis.filter.adapter.FilterAdapter;
 import com.yalantis.filter.animator.FiltersListItemAnimator;
 import com.yalantis.filter.listener.FilterListener;
 import com.yalantis.filter.widget.Filter;
+import com.yalantis.filter.widget.FilterItem;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -44,7 +48,7 @@ public class StockRecordActivity extends AppCompatActivity implements FilterList
     RecyclerView recyclerView;
     private int[] mColors;
     private String[] mTitles;
-    private List<Machine> mAllMachines;
+    private List<Machine> mAllMachines= new ArrayList<>();
     private Filter<Tag> mFilter;
     StockRecordAdpater adapter;
     @Override
@@ -58,8 +62,11 @@ public class StockRecordActivity extends AppCompatActivity implements FilterList
         mTitles = getResources().getStringArray(R.array.job_titles);
 
         mFilter = (Filter<Tag>) findViewById(R.id.filter);
-
+        mFilter.setAdapter(new Adapter(getTags()));
         mFilter.setListener(this);
+
+        mFilter.setNoSelectedItemText("All Categories");
+        mFilter.build();
 
         final Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -77,7 +84,7 @@ public class StockRecordActivity extends AppCompatActivity implements FilterList
 
         recyclerView = findViewById(R.id.stock_list_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        adapter = new StockRecordAdpater(mAllMachines,StockRecordActivity.this);
 
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Machines");
@@ -95,6 +102,7 @@ public class StockRecordActivity extends AppCompatActivity implements FilterList
 
                 adapter = new StockRecordAdpater(machineList,StockRecordActivity.this);
                 recyclerView.setAdapter(adapter);
+                mAllMachines = machineList;
             }
 
             @Override
@@ -103,9 +111,32 @@ public class StockRecordActivity extends AppCompatActivity implements FilterList
             }
         });
 
-        recyclerView.setItemAnimator(new FiltersListItemAnimator());
 
 
+
+    }
+    private void calculateDiff(final List<Machine> oldList, final List<Machine> newList) {
+        DiffUtil.calculateDiff(new DiffUtil.Callback() {
+            @Override
+            public int getOldListSize() {
+                return oldList.size();
+            }
+
+            @Override
+            public int getNewListSize() {
+                return newList.size();
+            }
+
+            @Override
+            public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+                return oldList.get(oldItemPosition).equals(newList.get(newItemPosition));
+            }
+
+            @Override
+            public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+                return oldList.get(oldItemPosition).equals(newList.get(newItemPosition));
+            }
+        }).dispatchUpdatesTo(adapter);
     }
 
     private List<Tag> getTags() {
@@ -155,12 +186,7 @@ public class StockRecordActivity extends AppCompatActivity implements FilterList
                     adapter.getFilter().filter(newText);
                     return true;
                 }
-
-
             }
-
-
-
 
         });
         return super.onCreateOptionsMenu(menu);
@@ -172,31 +198,98 @@ public class StockRecordActivity extends AppCompatActivity implements FilterList
     }
 
     @Override
-    public void onFilterSelected(Tag tag) {
-
+    public void onFilterSelected(Tag item) {
+        if (item.getText().equals(mTitles[0])) {
+            mFilter.deselectAll();
+            mFilter.collapse();
+        }
+       else {
+            List<Tag> filter = new ArrayList<>();
+            filter.add(item);
+            List<Machine> newList = findByTags(filter);
+            List<Machine> oldList = adapter. getMachine();
+            adapter.setMachine(newList);
+            calculateDiff(oldList, newList);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override
-    public void onFiltersSelected(@NotNull ArrayList<Tag> arrayList) {
-
+    public void onFiltersSelected(@NotNull ArrayList<Tag> filters) {
+        List<Machine> newList = findByTags(filters);
+        List<Machine> oldList = adapter. getMachine();
+        adapter.setMachine(newList);
+        calculateDiff(oldList, newList);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onNothingSelected() {
         if (recyclerView != null) {
-            adapter.setMachine(mAllMachines);
+            adapter.setMachineAll();
             adapter.notifyDataSetChanged();
         }
     }
     private List<Machine> findByTags(List<Tag> tags) {
         List<Machine> machines = new ArrayList<>();
+        int flag = 0;
 
         for (Machine machine : mAllMachines) {
             for (Tag tag : tags) {
+              if(tag.getText().equals("All")){
+                  machines.addAll(mAllMachines);
+                  flag =1;
+                  break;
+              }else if(tag.getText().equals("Working") && machine.isWorking()){
+                  machines.add(machine);
+              }else if(tag.getText().equals("Not Working") && !machine.isWorking()){
+                  machines.add(machine);
+              }else if(tag.getText().equals("Explosive Trace Detector") && machine.getType().toLowerCase().equals("explosive trace detector")){
+                  machines.add(machine);
+              }else if(tag.getText().equals("Bomb Detection System")&& machine.getType().toLowerCase().equals("bomb detection system")){
+                  machines.add(machine);
+              }else if(tag.getText().equals("X-Ray For Baggage Scanning")&& machine.getType().toLowerCase().equals("x ray for baggage scanning")){
+                  machines.add(machine);
+              }else if(tag.getText().equals("Hand Held Metal Detector")&& machine.getType().toLowerCase().equals("hand held metal detector")){
+                  machines.add(machine);
+              }else if(tag.getText().equals("Door Frame Metal Detector")&& machine.getType().toLowerCase().equals("door frame metal detector")){
+                  machines.add(machine);
+              }else if(tag.getText().equals("Flight Information Display System")&& machine.getType().toLowerCase().equals("flight information display system")){
+                  machines.add(machine);
+              }else if(tag.getText().equals("Laptop")&& machine.getType().toLowerCase().equals("laptop")){
+                  machines.add(machine);
+              }
 
+
+            }
+            if(flag == 1){
+                break;
             }
         }
 
         return machines;
+    }
+    class Adapter extends FilterAdapter<Tag> {
+
+        Adapter(@NotNull List<? extends Tag> items) {
+            super(items);
+        }
+
+        @NotNull
+        @Override
+        public FilterItem createView(int position, Tag item) {
+            FilterItem filterItem = new FilterItem(StockRecordActivity.this);
+
+            filterItem.setStrokeColor(mColors[8]);
+            filterItem.setTextColor(mColors[8]);
+            filterItem.setCornerRadius(100);
+            filterItem.setCheckedTextColor(ContextCompat.getColor(StockRecordActivity.this, android.R.color.white));
+            filterItem.setColor(ContextCompat.getColor(StockRecordActivity.this, android.R.color.white));
+            filterItem.setCheckedColor(mColors[position]);
+            filterItem.setText(item.getText());
+            filterItem.deselect();
+
+            return filterItem;
+        }
     }
 }
