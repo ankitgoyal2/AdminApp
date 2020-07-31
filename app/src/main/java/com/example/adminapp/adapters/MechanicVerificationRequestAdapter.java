@@ -142,7 +142,7 @@ public class MechanicVerificationRequestAdapter extends FirebaseRecyclerPagingAd
                                                 user[0] = auth.getCurrentUser();
                                                 HashMap<String, String> hashMap = (HashMap<String, String>) httpsCallableResult.getData();
                                                 if (hashMap.get("status").equals("Successful")) {
-
+                                                    mechanic.setUid(user[0].getUid());
                                                     userReference.child("Mechanic").child(user[0].getUid()).setValue(mechanic);
                                                     String plainText = email + "-" + password;
 
