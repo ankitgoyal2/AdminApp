@@ -26,6 +26,7 @@ import com.example.adminapp.GenerateQRActivity;
 import com.example.adminapp.ManagerListActivity;
 import com.example.adminapp.MechanicListActivity;
 import com.example.adminapp.R;
+import com.example.adminapp.StockRecordActivity;
 import com.example.adminapp.UsersActivity;
 import com.example.adminapp.ZoomCenterCardLayoutManager;
 import com.example.adminapp.adapters.ManagerHomepageListAdapter;
@@ -46,7 +47,7 @@ public class HomeFragment extends Fragment {
     Activity activity;
     FirebaseDatabase firebaseDatabase;
     ZoomCenterCardLayoutManager HorizontalLayout,Horizontallayout1;
-    LinearLayout linearLayout1,linearLayout2;
+    LinearLayout linearLayout1,linearLayout2,stockrecord;
 
     public HomeFragment() {
         activity = getActivity();
@@ -77,6 +78,15 @@ public class HomeFragment extends Fragment {
         ImageView generateQr = view.findViewById(R.id.generate_qr);
         ImageView addEmployee = view.findViewById(R.id.add_employee);
         ImageView broadcast = view.findViewById(R.id.broadcast);
+        stockrecord = view.findViewById(R.id.stock_record_ll);
+
+        stockrecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(activity.getApplicationContext(), StockRecordActivity.class);
+                startActivity(i);
+            }
+        });
 
         generateQr.setOnClickListener(new View.OnClickListener() {
             @Override

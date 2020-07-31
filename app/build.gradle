@@ -87,4 +87,12 @@ dependencies {
 
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //horizontal fixed progress bar
+    implementation 'com.sasank.roundedhorizontalprogress:roundedhorizontalprogress:1.0.1'
+
+    //Arc View
+    implementation 'com.github.lzyzsd:circleprogress:1.2.1'
+
+
 }
