@@ -540,6 +540,9 @@ public class GenerateQRActivity extends AppCompatActivity {
                     Log.i("mail" , manager.getEmail().toString());
                     if (tempManager != null) {
                         tempManager.setMyMachines(null);
+                        tempManager.setCompletedComplaints(null);
+                        tempManager.setPendingApprovalRequest(null);
+                        tempManager.setPendingComplaints(null);
                     }
                     Machine machine = new Machine(serialNo, installationdate, dept, machineId, type, company, model,
                             Objects.requireNonNull(task.getResult()).toString(), servicetime, null, price, true, tempManager, null, scrap, machineLife);
