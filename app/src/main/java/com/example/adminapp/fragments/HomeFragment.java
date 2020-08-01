@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,8 @@ import com.example.adminapp.adapters.ViewPagerAdapter;
 import com.example.adminapp.models.Manager;
 import com.example.adminapp.models.Mechanic;
 import com.firebase.ui.database.paging.DatabasePagingOptions;
+import com.github.lzyzsd.circleprogress.ArcProgress;
+import com.github.lzyzsd.circleprogress.CircleProgress;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,6 +61,7 @@ public class HomeFragment extends Fragment {
     TextView total, working;
     long total_machine, faulted;
     ProgressBar progress;
+    ArcProgress circleProgress;
     int percentage;
 
 
@@ -98,6 +102,35 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 total_machine = (long) dataSnapshot.getValue();
+                total.setText(String.valueOf(total_machine));
+
+                faultMachineReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        faulted = (long) dataSnapshot.getValue();
+                        working.setText(String.valueOf(total_machine-faulted) + "working");
+
+                        if(total_machine!=0) {
+                            percentage = (int) (((total_machine - faulted)*100) / total_machine);
+                        }
+                        else
+                        {
+                            percentage = 50;
+                        }
+
+                        Log.i("total", String.valueOf(total_machine));
+
+
+                        progress.setProgress(percentage);
+                        circleProgress.setProgress(percentage);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
 
             @Override
@@ -106,17 +139,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        faultMachineReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                faulted = (long) dataSnapshot.getValue();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
         ImageView generateQr = view.findViewById(R.id.generate_qr);
         ImageView addEmployee = view.findViewById(R.id.add_employee);
         ImageView broadcast = view.findViewById(R.id.broadcast);
@@ -124,18 +147,9 @@ public class HomeFragment extends Fragment {
         total = view.findViewById(R.id.total_machine);
         working = view.findViewById(R.id.working);
         progress = view.findViewById(R.id.progress_bar_1);
+        circleProgress = view.findViewById(R.id.arc_progress1);
 
-        if(total_machine!=0) {
-            percentage = (int) ((total_machine - faulted) / total_machine) * 100;
-        }
-        else
-        {
-            percentage = 50;
-        }
 
-        total.setText(String.valueOf(total_machine));
-        working.setText(String.valueOf(total_machine-faulted));
-        progress.setProgress(percentage);
 
         stockrecord.setOnClickListener(new View.OnClickListener() {
             @Override
