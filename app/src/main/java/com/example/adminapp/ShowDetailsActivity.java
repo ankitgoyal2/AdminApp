@@ -25,7 +25,6 @@ public class ShowDetailsActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     private ShowDetailsAdapter showDetailsAdapter;
-    FloatingActionButton floatingActionButton;
     String machineId;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference historyReference,pastRecordsReference;
@@ -53,7 +52,6 @@ public class ShowDetailsActivity extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        floatingActionButton = findViewById(R.id.btn_float);
         recyclerView = findViewById(R.id.RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -91,15 +89,7 @@ public class ShowDetailsActivity extends AppCompatActivity {
         showDetailsAdapter.startListening();
 
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Intent i = new Intent(ShowDetailsActivity.this, UpdateActivity.class);
-                // startActivity(i);
-                finish();
 
-            }
-        });
     }
 
     @Override

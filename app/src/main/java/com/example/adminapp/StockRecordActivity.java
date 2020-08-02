@@ -260,7 +260,6 @@ public class StockRecordActivity extends AppCompatActivity implements FilterList
                   machines.add(machine);
               }
 
-
             }
             if(flag == 1){
                 break;
