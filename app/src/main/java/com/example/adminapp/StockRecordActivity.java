@@ -59,7 +59,7 @@ public class StockRecordActivity extends AppCompatActivity implements FilterList
 
 
         mColors = getResources().getIntArray(R.array.colors);
-        mTitles = getResources().getStringArray(R.array.machine_full_form);
+        mTitles = getResources().getStringArray(R.array.job_titles);
 
         mFilter = (Filter<Tag>) findViewById(R.id.filter);
         mFilter.setAdapter(new Adapter(getTags()));
@@ -72,7 +72,7 @@ public class StockRecordActivity extends AppCompatActivity implements FilterList
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-       getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().setLogo(R.drawable.ic_home_toolbar);
         toolbar.setTitleTextAppearance(this,R.style.TitleTextAppearance);
         new Handler().postDelayed(new Runnable() {
@@ -203,7 +203,7 @@ public class StockRecordActivity extends AppCompatActivity implements FilterList
             mFilter.deselectAll();
             mFilter.collapse();
         }
-       else {
+        else {
             List<Tag> filter = new ArrayList<>();
             filter.add(item);
             List<Machine> newList = findByTags(filter);
@@ -230,40 +230,95 @@ public class StockRecordActivity extends AppCompatActivity implements FilterList
             adapter.notifyDataSetChanged();
         }
     }
+
+
     private List<Machine> findByTags(List<Tag> tags) {
         List<Machine> machines = new ArrayList<>();
+        List<Machine> filtermachine = new ArrayList<>();
         int flag = 0;
+        boolean working,not_working;
+        working=false;
+        not_working =false;
 
         for (Machine machine : mAllMachines) {
             for (Tag tag : tags) {
-              if(tag.getText().equals("All")){
-                  machines.addAll(mAllMachines);
-                  flag =1;
-                  break;
-              }else if(tag.getText().equals("Working") && machine.isWorking()){
-                  machines.add(machine);
-              }else if(tag.getText().equals("Not Working") && !machine.isWorking()){
-                  machines.add(machine);
-              }else if(tag.getText().equals("Explosive Trace Detector") && machine.getType().toLowerCase().equals("explosive trace detector")){
-                  machines.add(machine);
-              }else if(tag.getText().equals("Bomb Detection System")&& machine.getType().toLowerCase().equals("bomb detection system")){
-                  machines.add(machine);
-              }else if(tag.getText().equals("X-Ray For Baggage Scanning")&& machine.getType().toLowerCase().equals("x ray for baggage scanning")){
-                  machines.add(machine);
-              }else if(tag.getText().equals("Hand Held Metal Detector")&& machine.getType().toLowerCase().equals("hand held metal detector")){
-                  machines.add(machine);
-              }else if(tag.getText().equals("Door Frame Metal Detector")&& machine.getType().toLowerCase().equals("door frame metal detector")){
-                  machines.add(machine);
-              }else if(tag.getText().equals("Flight Information Display System")&& machine.getType().toLowerCase().equals("flight information display system")){
-                  machines.add(machine);
-              }else if(tag.getText().equals("Laptop")&& machine.getType().toLowerCase().equals("laptop")){
-                  machines.add(machine);
-              }
+                if(tag.getText().equals("All")){
+                    filtermachine.addAll(mAllMachines);
+                    flag =1;
+                    break;
+                }else if(tag.getText().equals("Working") && machine.isWorking()){
+                    filtermachine.add(machine);
+                    working = true;
 
+                }else if(tag.getText().equals("Not Working") && !machine.isWorking()){
+                    filtermachine.add(machine);
+                    not_working = true;
+
+                }
             }
             if(flag == 1){
                 break;
             }
+        }
+        boolean other = false;
+        if(working || not_working){
+            for (Machine machine : filtermachine) {
+                for (Tag tag : tags) {
+                    if(tag.getText().equals("Explosive Trace Detector") && machine.getType().toLowerCase().equals("etd")){
+                        machines.add(machine);
+                        other = true;
+
+                    }else if(tag.getText().equals("Bomb Detection System")&& machine.getType().toLowerCase().equals("bdds")){
+                        machines.add(machine);
+                        other = true;
+                    }else if(tag.getText().equals("X-Ray For Baggage Scanning")&& machine.getType().toLowerCase().equals("xbis")){
+                        machines.add(machine);
+                        other = true;
+                    }else if(tag.getText().equals("Hand Held Metal Detector")&& machine.getType().toLowerCase().equals("hhmd")){
+                        machines.add(machine);
+                        other = true;
+                    }else if(tag.getText().equals("Door Frame Metal Detector")&& machine.getType().toLowerCase().equals("dfmd")){
+                        machines.add(machine);
+                        other = true;
+                    }else if(tag.getText().equals("Flight Information Display System")&& machine.getType().toLowerCase().equals("fids")){
+                        machines.add(machine);
+                        other = true;
+                    }else if(tag.getText().equals("Laptop")&& machine.getType().toLowerCase().equals("laptop")){
+                        machines.add(machine);
+                        other = true;
+                    }
+                }
+            }
+        }else{
+            for (Machine machine : mAllMachines) {
+                for (Tag tag : tags) {
+                    if (tag.getText().equals("Explosive Trace Detector") && machine.getType().toLowerCase().equals("etd")) {
+                        machines.add(machine);
+                        other = true;
+                    } else if (tag.getText().equals("Bomb Detection System") && machine.getType().toLowerCase().equals("bdds")) {
+                        machines.add(machine);
+                        other = true;
+                    } else if (tag.getText().equals("X-Ray For Baggage Scanning") && machine.getType().toLowerCase().equals("xbis")) {
+                        machines.add(machine);
+                        other = true;
+                    } else if (tag.getText().equals("Hand Held Metal Detector") && machine.getType().toLowerCase().equals("hhmd")) {
+                        machines.add(machine);
+                        other = true;
+                    } else if (tag.getText().equals("Door Frame Metal Detector") && machine.getType().toLowerCase().equals("dfmd")) {
+                        machines.add(machine);
+                        other = true;
+                    } else if (tag.getText().equals("Flight Information Display System") && machine.getType().toLowerCase().equals("fids")) {
+                        machines.add(machine);
+                        other = true;
+                    } else if (tag.getText().equals("Laptop") && machine.getType().toLowerCase().equals("laptop")) {
+                        machines.add(machine);
+                        other = true;
+                    }
+                }
+            }
+        }
+        if(!other){
+            machines.addAll(filtermachine);
         }
 
         return machines;
