@@ -26,6 +26,7 @@ import com.example.adminapp.models.Machine;
 import com.example.adminapp.CircleDisplay;
 import com.example.adminapp.models.Manager;
 import com.example.adminapp.models.PastRecord;
+import com.example.adminapp.models.Request;
 import com.firebase.ui.database.paging.DatabasePagingOptions;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
@@ -279,9 +280,9 @@ public class GetMachineDetailsActivity extends AppCompatActivity {
                 .setPageSize(20)
                 .build();
 
-        DatabasePagingOptions<PastRecord> options = new DatabasePagingOptions.Builder<PastRecord>()
+        DatabasePagingOptions<Request> options = new DatabasePagingOptions.Builder<Request>()
                 .setLifecycleOwner(this)
-                .setQuery(baseQuery1, config, PastRecord.class)
+                .setQuery(baseQuery1, config, Request.class)
                 .build();
 
         showDetailsAdapter = new ShowDetailsAdapter(options, GetMachineDetailsActivity.this);

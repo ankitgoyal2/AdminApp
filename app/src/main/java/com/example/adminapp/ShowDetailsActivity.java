@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.example.adminapp.adapters.ShowDetailsAdapter;
 import com.example.adminapp.models.PastRecord;
+import com.example.adminapp.models.Request;
 import com.firebase.ui.database.paging.DatabasePagingOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
@@ -79,9 +80,9 @@ public class ShowDetailsActivity extends AppCompatActivity {
                 .setPageSize(20)
                 .build();
 
-        DatabasePagingOptions<PastRecord> options = new DatabasePagingOptions.Builder<PastRecord>()
+        DatabasePagingOptions<Request> options = new DatabasePagingOptions.Builder<Request>()
                 .setLifecycleOwner(this)
-                .setQuery(baseQuery,config,PastRecord.class)
+                .setQuery(baseQuery,config,Request.class)
                 .build();
 
         showDetailsAdapter = new ShowDetailsAdapter(options, ShowDetailsActivity.this);
