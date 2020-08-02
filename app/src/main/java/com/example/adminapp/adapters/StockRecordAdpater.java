@@ -1,6 +1,7 @@
 package com.example.adminapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.adminapp.GetMachineDetailsActivity;
 import com.example.adminapp.R;
 import com.example.adminapp.models.Machine;
 import com.example.adminapp.models.Manager;
@@ -124,6 +126,7 @@ public class StockRecordAdpater extends RecyclerView.Adapter<StockRecordAdpater.
 
         TextView machineId, location,type,serialNumber,workingStatus;
         CardView cardView;
+        String[] mTitles;
 
         public MyMachinesHolder(@NonNull View itemView) {
             super(itemView);
@@ -134,13 +137,37 @@ public class StockRecordAdpater extends RecyclerView.Adapter<StockRecordAdpater.
             type = itemView.findViewById(R.id.machine_type);
             workingStatus = itemView.findViewById(R.id.machine_working_text);
             cardView = itemView.findViewById(R.id.cardview);
+            mTitles = c.getResources().getStringArray(R.array.machine_full_form);
         }
 
-        public void bind(Machine model)
+        public void bind(final Machine model)
         {
+
             machineId.setText(model.getMachineId());
             location.setText(model.getDepartment());
             type.setText(model.getType());
+
+            if(model.getType().toLowerCase().equals("hhmd")){
+                type.setText(mTitles[3]);
+
+            }else  if(model.getType().toLowerCase().equals("bdds")){
+
+            type.setText(mTitles[1]);
+            }else  if(model.getType().toLowerCase().equals("etd")){
+
+                type.setText(mTitles[0]);
+            }else  if(model.getType().toLowerCase().equals("xbis")){
+
+                type.setText(mTitles[2]);
+            }else  if(model.getType().toLowerCase().equals("fids")){
+
+                type.setText(mTitles[5]);
+            }else if(model.getType().toLowerCase().equals("dfmd")){
+
+                type.setText(mTitles[4]);
+            }else{
+                type.setText(model.getType());
+            }
             serialNumber.setText(model.getSerialNumber());
             if(model.isWorking()){
                 workingStatus.setBackgroundResource(R.drawable.working_tv_background);
@@ -149,6 +176,15 @@ public class StockRecordAdpater extends RecyclerView.Adapter<StockRecordAdpater.
                 workingStatus.setBackgroundResource(R.drawable.not_working_background);
                 workingStatus.setText("NOT WORKING");
             }
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(c, GetMachineDetailsActivity.class);
+                    i.putExtra("generationCode",model.getMachineId());
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    c.startActivity(i);
+                }
+            });
         }
     }
 }

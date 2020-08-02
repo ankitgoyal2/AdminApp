@@ -58,12 +58,13 @@ public class MechanicHomepageListAdapter extends FirebaseRecyclerPagingAdapter<M
     public class MyHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         CircleImageView profilepic;
-        TextView mechanicName,buttonViewOption;
+        TextView mechanicName,buttonViewOption,employeeId;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
           cardView = itemView.findViewById(R.id.card_item);
           profilepic = itemView.findViewById(R.id.manager_pic);
           mechanicName = itemView.findViewById(R.id.manager_name);
+            employeeId = itemView.findViewById(R.id.manager_emp_id);
             buttonViewOption =  itemView.findViewById(R.id.textViewOptions);
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -85,6 +86,8 @@ public class MechanicHomepageListAdapter extends FirebaseRecyclerPagingAdapter<M
         public void bind(Mechanic model) {
 
             mechanicName.setText(model.getUserName());
+
+            employeeId.setText(model.getEmpId());
 
                 Glide.with(itemView)
                         .load(model.getProfilePicLink())

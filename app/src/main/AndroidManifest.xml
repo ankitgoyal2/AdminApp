@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StockRecordActivity"></activity>
+        <activity android:name=".ShowDetailsActivity"></activity>
+        <activity android:name=".GetMachineDetailsActivity" />
+        <activity android:name=".StockRecordActivity" />
         <activity android:name=".MechanicListActivity" />
         <activity android:name=".ManagerListActivity" />
         <activity android:name=".MechanicProfileActivity" />

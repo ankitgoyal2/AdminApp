@@ -3,8 +3,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string-array name="job_titles">
-    <item>All categories</item>
+    <string-array name="machine_full_form">
+        <item>All categories</item>
         <item>Working</item>
         <item>Not Working</item>
         <item>Explosive Trace Detector</item>

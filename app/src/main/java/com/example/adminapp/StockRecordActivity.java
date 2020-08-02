@@ -59,7 +59,7 @@ public class StockRecordActivity extends AppCompatActivity implements FilterList
 
 
         mColors = getResources().getIntArray(R.array.colors);
-        mTitles = getResources().getStringArray(R.array.job_titles);
+        mTitles = getResources().getStringArray(R.array.machine_full_form);
 
         mFilter = (Filter<Tag>) findViewById(R.id.filter);
         mFilter.setAdapter(new Adapter(getTags()));
