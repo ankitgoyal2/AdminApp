@@ -1,5 +1,6 @@
 package com.example.adminapp.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -98,14 +99,14 @@ public class ManagerBasicAdapter extends RecyclerView.Adapter<ManagerBasicAdapte
     public class MyHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         CircleImageView profilepic;
-        TextView managerName,buttonViewOption;
+        TextView managerName,buttonViewOption,employeeId;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.card_item);
             profilepic = itemView.findViewById(R.id.manager_pic);
             managerName = itemView.findViewById(R.id.manager_name);
             buttonViewOption =  itemView.findViewById(R.id.textViewOptions);
-
+            employeeId = itemView.findViewById(R.id.manager_emp_id);
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -124,6 +125,8 @@ public class ManagerBasicAdapter extends RecyclerView.Adapter<ManagerBasicAdapte
         public void bind(Manager model) {
 
             managerName.setText(model.getUserName());
+
+            employeeId.setText(model.getEmpId());
             Glide.with(itemView)
                     .load(model.getProfilePicLink())
                     .fitCenter()

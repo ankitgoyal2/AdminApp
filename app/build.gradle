@@ -94,5 +94,12 @@ dependencies {
     //Arc View
     implementation 'com.github.lzyzsd:circleprogress:1.2.1'
 
+    //Filter
+    implementation 'com.github.Yalantis:SearchFilter:v1.0.4'
+
+    //Bar chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
 
 }

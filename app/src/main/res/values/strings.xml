@@ -3,4 +3,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="machine_full_form">
+        <item>All categories</item>
+        <item>Working</item>
+        <item>Not Working</item>
+        <item>Explosive Trace Detector</item>
+        <item>Bomb Detection System</item>
+        <item>X-Ray For Baggage Scanning</item>
+        <item>Hand Held Metal Detector</item>
+        <item>Door Frame Metal Detector</item>
+        <item>Flight Information Display System</item>
+        <item>Laptop</item>
+    </string-array>
 </resources>

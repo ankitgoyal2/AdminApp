@@ -30,4 +30,19 @@
     <color name="list_color_11">#DBFAFA</color>
 
     <color name="whiteTextColor">#FFFFFF</color>
+
+
+    <array name="colors">
+        <item name="all" type="color">#c467f4</item>
+        <item name="working" type="color">#3b9aee</item>
+        <item name="not working" type="color">#c467f4</item>
+        <item name="explosive trace detector" type="color">#9bc53d</item>
+        <item name="bomb detection system" type="color">#f4a261</item>
+        <item name="x-ray for baggage scanning" type="color">#1ed2bb</item>
+        <item name="hand held metal detector" type="color">#778da9</item>
+        <item name="door frame metal detector" type="color">#20bf55</item>
+        <item name="flight information display system" type="color">#9f9fed</item>
+        <item name="laptop" type="color">#fc6177</item>
+        <item name="other" type="color">#bcbcbc</item>
+    </array>
 </resources>
