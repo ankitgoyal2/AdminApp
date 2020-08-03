@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(GetTokenResult getTokenResult) {
                                     try {
-                                        boolean isMechanic = (boolean) getTokenResult.getClaims().get("mechanic");
+
                                         if(email.equals("admin@gmail.com") && password.equals("123456"))
                                         {
 
