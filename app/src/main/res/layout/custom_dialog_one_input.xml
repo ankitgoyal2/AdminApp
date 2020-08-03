@@ -37,7 +37,7 @@
                 android:textSize="17dp"
                 android:id="@+id/D1I_input"
                 style="@style/modifiedEditText"
-                android:hint="@string/login_email_hint"
+                android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -61,7 +61,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/btn_round_transparent"
+
                 android:textColor="#5FAF67"
                 android:text="Cancel"
                 />

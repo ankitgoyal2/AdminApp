@@ -60,8 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        customDialogBox = new CustomDialogBox(LoginActivity.this);
-        customDialogBox.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
 
 
         loginButton = findViewById(R.id.loginButton);
@@ -90,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Password should be atleast 6 character long", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    customDialogBox.show();
+
                     login(email, password);
 
                 }
@@ -99,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void login(String email, String password) {
+    private void login(final String email, final String password) {
 
         mAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -124,9 +123,9 @@ public class LoginActivity extends AppCompatActivity {
                                 public void onSuccess(GetTokenResult getTokenResult) {
                                     try {
                                         boolean isMechanic = (boolean) getTokenResult.getClaims().get("mechanic");
-                                        if(isMechanic)
+                                        if(email.equals("admin@gmail.com") && password.equals("123456"))
                                         {
-                                            customDialogBox.dismiss();
+
                                             SweetToast.success(getApplicationContext(),"Login Successfully");
                                             Intent i = new Intent(LoginActivity.this,BottomNavigationActivity.class);
                                             startActivity(i);
@@ -134,14 +133,14 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                         else
                                         {
-                                            customDialogBox.dismiss();
+
                                             SweetToast.error(getApplicationContext(),"You Entered wrong Id or password");
                                         }
 
                                     }
                                     catch (Exception e)
                                     {
-                                        customDialogBox.dismiss();
+
                                         SweetToast.error(getApplicationContext(),"Error");
                                     }
 
@@ -149,7 +148,7 @@ public class LoginActivity extends AppCompatActivity {
                             });
 
                         } else {
-                            customDialogBox.dismiss();
+
                             SweetToast.error(getApplicationContext(),"You Entered wrong Id or password");
 
                         }

@@ -19,14 +19,17 @@
         <activity android:name=".GenerateQRActivity" />
         <activity android:name=".AddEmployeeActivity" />
         <activity android:name=".BroadcastActivity" />
-        <activity
-            android:name=".BottomNavigationActivity"
-            android:theme="@style/SplashTheme">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".BottomNavigationActivity"
+            android:theme="@style/SplashTheme">
+
         </activity>
         <activity android:name=".ProfileActivity" />
         <activity android:name=".UsersActivity" />
