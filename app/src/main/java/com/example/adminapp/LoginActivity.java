@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         loginPassword = findViewById(R.id.loginPassword);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        serviceManReference = firebaseDatabase.getReference("Users").child("Admin");
+        serviceManReference = firebaseDatabase.getReference("Users").child("Mechanic");
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -111,15 +111,42 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
                                 @Override
                                 public void onSuccess(InstanceIdResult instanceIdResult) {
-                                    customDialogBox.dismiss();
-                                    SweetToast.success(getApplicationContext(),"Login Successfully");
-                                    Intent i = new Intent(LoginActivity.this,BottomNavigationActivity.class);
-                                    startActivity(i);
-                                    finish();
+                                    String newToken = instanceIdResult.getToken();
+                                    FirebaseDatabase.getInstance().getReference("tokens/" +
+                                            mAuth.getCurrentUser().getUid()).setValue(newToken);
 
                                 }
                             });
 
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            user.getIdToken(true).addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
+                                @Override
+                                public void onSuccess(GetTokenResult getTokenResult) {
+                                    try {
+                                        boolean isMechanic = (boolean) getTokenResult.getClaims().get("mechanic");
+                                        if(isMechanic)
+                                        {
+                                            customDialogBox.dismiss();
+                                            SweetToast.success(getApplicationContext(),"Login Successfully");
+                                            Intent i = new Intent(LoginActivity.this,BottomNavigationActivity.class);
+                                            startActivity(i);
+                                            finish();
+                                        }
+                                        else
+                                        {
+                                            customDialogBox.dismiss();
+                                            SweetToast.error(getApplicationContext(),"You Entered wrong Id or password");
+                                        }
+
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        customDialogBox.dismiss();
+                                        SweetToast.error(getApplicationContext(),"Error");
+                                    }
+
+                                }
+                            });
 
                         } else {
                             customDialogBox.dismiss();
@@ -129,65 +156,74 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+//    public void onLoginClick(View View){
+//        startActivity(new Intent(this, RegisterActivity.class));
+//        overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+//        finish();
+//    }
 
+//    public void RegisterClick(View view)
+//    {
+//        startActivity(new Intent(this,RegisterActivity.class));
+//        overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+//        finish();
+//    }
 
-
-
-    public void onForgetPassword(View view)
-    {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View mView = getLayoutInflater().inflate(R.layout.custom_dialog_one_input,null);
-
-        final EditText m_Text = (EditText)mView.findViewById(R.id.D1I_input);
-        Button confirm = (Button)mView.findViewById(R.id.D1I_confirm);
-        Button cancel = (Button)mView.findViewById(R.id.D1I_cancel);
-
-        builder.setView(mView);
-        final AlertDialog alertDialog = builder.create();
-        alertDialog.setCanceledOnTouchOutside(false);
-
-        final CustomDialogBox customDialogBox1 = new CustomDialogBox(this);
-        customDialogBox1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialog.dismiss();
-            }
-        });
-
-        confirm.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                customDialogBox1.show();
-                String text = m_Text.getText().toString();
-                alertDialog.dismiss();
-                mAuth.sendPasswordResetEmail(text).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                        if(task.isSuccessful())
-                        {
-                            Toast.makeText(LoginActivity.this, "Email has been sent to your Registered Email", Toast.LENGTH_SHORT).show();
-                            customDialogBox1.dismiss();
-                        }
-                        else
-                        {
-                            Toast.makeText(LoginActivity.this, "AA gyi dikkat", Toast.LENGTH_SHORT).show();
-                            customDialogBox1.dismiss();
-                        }
-
-
-                    }
-                });
-            }
-        });
-
-        alertDialog.show();
-
-    }
+//    public void onForgetPassword(View view)
+//    {
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        View mView = getLayoutInflater().inflate(R.layout.custom_dialog_one_input,null);
+//
+//        final EditText m_Text = (EditText)mView.findViewById(R.id.D1I_input);
+//        Button confirm = (Button)mView.findViewById(R.id.D1I_confirm);
+//        Button cancel = (Button)mView.findViewById(R.id.D1I_cancel);
+//
+//        builder.setView(mView);
+//        final AlertDialog alertDialog = builder.create();
+//        alertDialog.setCanceledOnTouchOutside(false);
+//
+//        final CustomDialogBox customDialogBox1 = new CustomDialogBox(this);
+//        customDialogBox1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//
+//        cancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                alertDialog.dismiss();
+//            }
+//        });
+//
+//        confirm.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//
+//                customDialogBox1.show();
+//                String text = m_Text.getText().toString();
+//                alertDialog.dismiss();
+//                mAuth.sendPasswordResetEmail(text).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//
+//                        if(task.isSuccessful())
+//                        {
+//                            Toast.makeText(LoginActivity.this, "Email has been sent to your Registered Email", Toast.LENGTH_SHORT).show();
+//                            customDialogBox1.dismiss();
+//                        }
+//                        else
+//                        {
+//                            Toast.makeText(LoginActivity.this, "AA gyi dikkat", Toast.LENGTH_SHORT).show();
+//                            customDialogBox1.dismiss();
+//                        }
+//
+//
+//                    }
+//                });
+//            }
+//        });
+//
+//        alertDialog.show();
+//
+//    }
 
 
 }
